@@ -1,0 +1,137 @@
+.page__container {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Coté gauche de la page */
+.left__page__content {
+    flex: 1;
+    text-align: left;
+    background-color: #222230;
+    height: 90vh;
+}
+
+
+.categories-selector {
+    display: flex;
+    flex-direction: row;
+    margin: 3rem 0 0 1rem;
+    color: white;
+    font-family: "Roboto Light", sans-serif;
+}
+
+.categories-selector h2 {
+    font-size: 1rem;
+}
+
+.categories-selector i {
+    cursor: pointer;
+    margin-left: 1rem;
+    font-size: 1.2rem;
+}
+
+.categories_list {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.categories_list a {
+
+    font-family: "Roboto Light", sans-serif;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.categories_list a:hover{
+    cursor: pointer;
+    background-color: #191924;
+}
+
+.limit__span {
+    display: block;
+    width: 60%;
+    height: 1px;
+    background-color: white;
+    margin-left: 20%;
+}
+
+
+/* Centre de la page */
+.center__page__content {
+    flex: 3;
+    text-align: center;
+    background-color: #707099;
+}
+
+.posts__selection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+    margin-top: 1rem;
+}
+
+.posts__selection h2 {
+    cursor: pointer;
+    color: white;
+    font-family: "Roboto Light", sans-serif;
+    font-size: 1rem;
+}
+
+.selected__posts {
+    opacity: 1;
+}
+
+.not_selected__posts {
+    opacity: 0.5;
+}
+
+/* Coté droit de la page */
+.right__page__content {
+    flex: 1;
+    text-align: right;
+    background-color: #222230;
+    height: 90vh;
+}
+
+
+.communities-selector {
+    display: flex;
+    flex-direction: row;
+    margin: 3rem 0 0 3rem;
+    color: white;
+    font-family: "Roboto Light", sans-serif;
+}
+
+.communities-selector h2 {
+    font-size: 1rem;
+}
+
+.communities_list {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.community__display {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    margin-left: 3rem;
+    gap: 1rem;
+    align-items: center;
+}
+
+.community_icon {
+    height: 2rem;
+    width: auto;
+}
+
+.community_title {
+    color: white;
+    font-family: "Roboto Light", sans-serif;
+}

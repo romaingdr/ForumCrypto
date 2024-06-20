@@ -4,14 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil Forum</title>
+    <link rel="stylesheet" href="/public/css/header.css">
+    <link rel="stylesheet" href="/public/css/index.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
 
-
 <main class="container">
-    <h1>Page d'accueil</h1>
+    <%- include('header.ejs') %>
+
+    <div class="page__container">
+        <div class="left__page__content">
+            <div class="categories-selector">
+                <h2>THEMATIQUES</h2>
+                <i id="categories__arrow" class='bx bx-chevron-right'></i>
+            </div>
+            <div class="categories_list"></div>
+            <span class="limit__span"></span>
+        </div>
+        <div class="center__page__content">
+            <div class="posts__selection">
+                <h2 class="selected__posts">Général</h2>
+                <h2 class="not_selected__posts">Suivis</h2>
+            </div>
+        </div>
+        <div class="right__page__content">
+            <div class="communities-selector">
+                <h2>COMMUNAUTES</h2>
+            </div>
+            <div class="communities_list">
+                <div class="community__display">
+                    <img class="community_icon" src="/public/img/bitcoin.png">
+                    <a class="community_title">c/Bitcoin</a>
+                </div>
+                <div class="community__display">
+                    <img class="community_icon" src="/public/img/ethereum.png">
+                    <a class="community_title">c/Ethereum</a>
+                </div>
+                <div class="community__display">
+                    <img class="community_icon" src="/public/img/solana.png">
+                    <a class="community_title">c/Solana</a>
+                </div>
+            </div>
+            <span class="limit__span"></span>
+        </div>
+    </div>
 </main>
 
-
+<script src="/public/js/index.js"></script>
 </body>
 </html>
