@@ -23,6 +23,10 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
+app.get("/profile", (req, res) => {
+  res.render("profile");
+});
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server is running on port ${PORT}`);

@@ -135,3 +135,25 @@
     color: white;
     font-family: "Roboto Light", sans-serif;
 }
+
+.new__post__button {
+    position: absolute;
+    bottom: 5%;
+    right: 20%;
+
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    font-family: "Roboto Light", sans-serif;
+    margin-right: 2rem;
+    background-color: #707099;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.new__post__button:hover {
+    box-shadow: 0px 0px 10px 0px rgba(255,255,255,0.75);
+    background-color: #222230;
+}

@@ -1,5 +1,6 @@
 module.exports = (app) => {
   const users = require("../controller/users.controller.js");
+  const checkToken = require('../middleware/checkToken.middleware.js');
 
   let router = require("express").Router();
 
@@ -14,6 +15,10 @@ module.exports = (app) => {
   // Verify user credentials
 
   router.post("/users/login", users.loginUser);
+
+  // Get user by id
+
+  router.get("/user", checkToken, users.getUserById);
 
   app.use("/api", router);
 };

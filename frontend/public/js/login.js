@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const response = await fetch("http://localhost:3000/api/users/login", {
       method: "POST",
+      credentials: 'include',
       headers: {
         "Content-Type": "application/json",
       },
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const data = await response.json();
 
     if (data.message === "success") {
+
       window.location.href = "/";
     } else {
       errorMsg.innerHTML = "Mot de passe ou email incorrect";

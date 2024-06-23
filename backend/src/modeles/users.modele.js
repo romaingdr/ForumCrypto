@@ -14,7 +14,7 @@ class ModeleUsers {
         res(false, result);
         return;
       }
-      res(true, { message: "not found" });
+      res(true, {message: "not found"});
     });
   }
 
@@ -28,14 +28,14 @@ class ModeleUsers {
         return;
       }
       console.log("Utilisateur créé");
-      res(false, { message: "success" });
+      res(false, {message: "success"});
     });
   }
 
   static loginUser(user, res) {
     let sqlQuery = db.format(
-      "SELECT * FROM users WHERE email = ? AND password = ?",
-      [user.email, user.password]
+        "SELECT * FROM users WHERE email = ? AND password = ?",
+        [user.email, user.password]
     );
 
     db.query(sqlQuery, (err, result) => {
@@ -46,12 +46,30 @@ class ModeleUsers {
       }
       if (result.length) {
         console.log("Utilisateur connecté");
-        res(false, { message: "success" });
+        res(false, {message: "success", userId: result[0].user_id, roleId: result[0].id_role});
         return;
       }
-      res(true, { message: "not found" });
+      res(true, {message: "not found"});
     });
   }
+
+  static getUserById(id, res) {
+    let sqlQuery = db.format("SELECT user_id, username, email, created_at, biography, profile_pic FROM users WHERE user_id = ?", id);
+
+    db.query(sqlQuery, (err, result) => {
+          if (err) {
+            console.log(err);
+            res(true, err);
+            return;
+          }
+          if (result.length) {
+            res(false, result);
+            return;
+          }
+          res(true, {message: "not found"});
+        });
+  }
+
 }
 
 module.exports = ModeleUsers;
