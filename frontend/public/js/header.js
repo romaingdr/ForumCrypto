@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     loadSession();
 });
 
@@ -8,7 +8,6 @@ function loadSession() {
     })
         .then(response => {
             if (response.status === 401) {
-                window.location.href = "/login";
                 return;
             }
             return response.json();
