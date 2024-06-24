@@ -1,3 +1,4 @@
+let user_id;
 document.addEventListener('DOMContentLoaded', function() {
     fetch(`http://localhost:3000/api/user/`, {
         credentials: 'include'
@@ -6,7 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             const currentUser = data[0];
             if (currentUser) {
-                fetchFriendsRequests(currentUser.user_id);
+                user_id = currentUser.user_id;
+                fetchFriendsRequests(user_id);
             } else {
                 window.location.href = "/login";
             }
@@ -76,8 +78,10 @@ function acceptRequest(requestId) {
         .then(res => res.json())
         .then(data => {
             if (data.message === "success") {
-                location.reload();
+                showPopup("Demande d'ami acceptée", "#4CAF50");
+                fetchFriendsRequests(user_id)
             } else {
+                showPopup("Une erreur s'est produite lors de l'acceptation de la demande d'ami", "#FF5252")
                 console.log("Une erreur s'est produite lors de l'acceptation de la demande d'ami");
             }
         });
@@ -92,10 +96,29 @@ function rejectRequest(requestId) {
         .then(data => {
             if (data.message === "success") {
                 if (data.message === "success") {
-                    location.reload();
+                    showPopup("Demande d'ami refusée", "#FF5252");
+                    fetchFriendsRequests(user_id)
                 } else {
+                    showPopup("Une erreur s'est produite lors du rejet de la demande d'ami", "#FF5252")
                     console.log("Une erreur s'est produite lors du rejet de la demande d'ami");
                 }
             }
         });
+}
+
+
+// Popups confirmation
+
+function showPopup(text, color) {
+    const popup = document.getElementById('success-popup');
+    popup.innerHTML = text;
+    popup.style.backgroundColor = color;
+    popup.classList.remove('hidden');
+    popup.classList.add('show');
+    setTimeout(() => {
+        popup.classList.remove('show');
+        setTimeout(() => {
+            popup.classList.add('hidden');
+        }, 500);
+    }, 2000);
 }
