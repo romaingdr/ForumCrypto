@@ -22,7 +22,7 @@ module.exports = (app) => {
 
   // Get user by username
 
-    router.get("/user/:username", users.getUserByUsername);
+  router.get("/user/:username", users.getUserByUsername);
 
   app.use("/api", router);
 };

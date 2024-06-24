@@ -92,6 +92,38 @@ class ControllerFriendRequests {
             res.status(200).send(result);
         });
     }
+
+    static addFriend = (req, res) => {
+        const requestId = req.params.id;
+
+        FriendRequests.addFriend(requestId, (err, result) => {
+            if (err) {
+                res.status(500).send({
+                    message:
+                    err.message ||
+                    "Une erreur s'est produite lors de l'ajout de l'ami"
+                });
+                return;
+            }
+            res.status(201).send({ message: "success" });
+        });
+    }
+
+    static getFriends = (req, res) => {
+        const id = req.params.id;
+
+        FriendRequests.getFriends(id, (err, result) => {
+            if (err) {
+                res.status(500).send({
+                    message:
+                        err.message ||
+                        "Une erreur s'est produite lors de la récupération des amis"
+                });
+                return;
+            }
+            res.status(200).send(result);
+        });
+    }
 }
 
 module.exports = ControllerFriendRequests;

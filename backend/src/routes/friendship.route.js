@@ -8,7 +8,6 @@ module.exports = (app) => {
 
     router.post("/friend_requests", friendship.sendFriendRequest);
 
-
     // Get friend status
 
     router.get("/friendship/:id_sender/:id_receiver", friendship.getFriendStatus);
@@ -21,9 +20,17 @@ module.exports = (app) => {
 
     router.put("/friend_requests/accept/:id", friendship.acceptFriendRequest);
 
+    // Add friend
+
+    router.post("/friendship/:id", friendship.addFriend);
+
     // Reject friend request
 
     router.delete("/friend_requests/reject/:id", friendship.rejectFriendRequest);
+
+    // Get user's friends
+
+    router.get("/friends/:id", friendship.getFriends)
 
     app.use("/api", router);
 };

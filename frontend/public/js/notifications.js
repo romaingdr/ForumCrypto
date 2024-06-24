@@ -58,6 +58,7 @@ function fetchFriendsRequests(userId) {
                 button.addEventListener('click', function() {
                     const friendRequestId = this.getAttribute('data-id');
                     acceptRequest(friendRequestId);
+                    addFriend(friendRequestId);
                 });
             });
 
@@ -106,6 +107,19 @@ function rejectRequest(requestId) {
         });
 }
 
+function addFriend(requestId) {
+    fetch(`http://localhost:3000/api/friendship/${requestId}`, {
+        method: 'POST',
+        credentials: 'include'
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.message !== "success") {
+                console.log("Une erreur est survenue durant l'ajout en ami")
+            }
+
+        });
+}
 
 // Popups confirmation
 
