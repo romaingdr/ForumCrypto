@@ -18,31 +18,23 @@ function fetchProfileInfos() {
                 const user = data[0]
                 console.log(user);
                 if (user) {
-                    const userInfos = document.querySelector('.main__infos');
-                    const pictureDisplay = document.querySelector('.picture__display');
-                    const bioDisplay = document.querySelector('.biography');
-
-                    const profilePicture = document.createElement('img');
+                    const profilePicture = document.getElementById('user_picture')
                     profilePicture.src = "/public/img/" + user.profile_pic;
-                    profilePicture.alt = "Profile picture";
-                    profilePicture.classList.add('profile__picture');
 
-                    const username = document.createElement('h2');
+                    const username = document.getElementById('user_name')
                     username.textContent = user.username;
-                    username.classList.add('profile__username');
 
-                    const biography = document.createElement('p');
+                    const biography = document.getElementById('user_biography')
                     biography.textContent = user.biography;
-                    biography.classList.add('profile__biography');
 
-                    const email = document.createElement('p');
-                    email.textContent = "email : " + user.email;
-                    email.classList.add('profile__email');
+                    const creationDate = document.getElementById('user_created_at')
 
-                    pictureDisplay.appendChild(profilePicture);
-                    userInfos.appendChild(username);
-                    userInfos.appendChild(email);
-                    bioDisplay.appendChild(biography);
+                    const date = new Date(user.created_at);
+                    const day = String(date.getUTCDate()).padStart(2, '0');
+                    const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+                    const year = date.getUTCFullYear();
+
+                    creationDate.textContent = `Membre depuis le ${day}/${month}/${year}`;
                 }
             }
         })

@@ -1,50 +1,87 @@
 .container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     height: 90vh;
     background-color: #707099;
 }
 
-.user__infos {
+.main__infos {
     display: flex;
     flex-direction: row;
-    margin-top: 2rem;
+    align-items: center;
 }
 
-.profile__picture {
+.user__picture img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    margin-right: 20px;
+    margin: 20px;
 }
 
-.profile__username {
+.user__infos h1 {
     font-family: "Roboto Light", sans-serif;
-    font-size: 4rem;
-    font-weight: bold;
     color: white;
+    font-size: 2em;
+    margin: 20px;
 }
 
-.profile__email {
+.user__infos p {
     font-family: "Roboto Light", sans-serif;
-    font-size: 1.5rem;
     color: white;
+    font-size: 1.5em;
+    margin: 20px;
 }
 
-.profile__biography {
+.bottom__infos {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
+
+.biography__container {
+    background-color: rgba(129, 39, 243, 0.2);
+    border: 2px solid white;
+    width: 50%;
+    height: 40vh;
+    border-radius: 20px
+}
+
+.biography__container h2 {
+    font-family: "Roboto Light", sans-serif;
     color: white;
-    font-family: "Roboto Light", sans-serif;
+    font-size: 1.5em;
+    margin: 20px;
 }
 
-.biography h1 {
+.biography__container p {
     font-family: "Roboto Light", sans-serif;
-    font-size: 2rem;
-    color: #191924;
+    color: white;
+    font-size: 1em;
+    margin: 20px;
 }
 
-.user__infos__container{
+.more__infos {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+}
+
+.more__infos p {
+    font-family: "Roboto Light", sans-serif;
+    color: white;
+    font-size: 1.5em;
+    margin: 20px;
+}
+
+.more__infos a {
+    text-align: center;
+    color: white;
+    font-size: 1.5em;
+    font-family: "Roboto Light", sans-serif;
+    background-color: rgba(129, 39, 243, 0.2);
+    border: 2px solid white;
+    border-radius: 20px;
+    margin: 20px;
+    padding: 0.5rem;
+    width: 50%;
+    cursor: pointer;
 }
