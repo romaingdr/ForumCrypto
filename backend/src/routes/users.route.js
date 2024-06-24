@@ -20,5 +20,9 @@ module.exports = (app) => {
 
   router.get("/user", checkToken, users.getUserById);
 
+  // Get user by username
+
+    router.get("/user/:username", users.getUserByUsername);
+
   app.use("/api", router);
 };

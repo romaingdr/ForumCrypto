@@ -3,18 +3,20 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function loadSession() {
+    const loginButton = document.getElementById('login__button');
     fetch('http://localhost:3000/api/user', {
         credentials: 'include'
     })
         .then(response => {
             if (response.status === 401) {
+                loginButton.textContent = "Login";
+                loginButton.href = "/login";
                 return;
             }
             return response.json();
         })
         .then(data => {
             if (data) {
-                const loginButton = document.getElementById('login__button');
                 if (data[0].username) {
                     loginButton.innerHTML = "<i class='bx bx-user' color='white'></i>" + " " + data[0].username;
                     loginButton.href = "/profile";

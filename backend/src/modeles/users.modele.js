@@ -70,6 +70,22 @@ class ModeleUsers {
         });
   }
 
+  static getUserByUsername(username, res) {
+    let sqlQuery = db.format("SELECT user_id, username, email, created_at, biography, profile_pic FROM users WHERE username = ?", username);
+
+    db.query(sqlQuery, (err, result) => {
+          if (err) {
+            console.log(err);
+            res(true, err);
+            return;
+          }
+          if (result.length) {
+            res(false, result);
+            return;
+          }
+          res(true, {message: "not found"});
+        });
+  }
 }
 
 module.exports = ModeleUsers;
