@@ -49,7 +49,7 @@ async function fetchCoinGeckoData() {
     const url = "https://api.coingecko.com/api/v3/coins/markets";
     const params = new URLSearchParams({
         vs_currency: "usd",
-        per_page: 5,
+        per_page: 10,
         page: 1
     });
 
