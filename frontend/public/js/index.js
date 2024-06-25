@@ -108,14 +108,18 @@ const page = document.querySelector('.left__page__content');
 const centerPage = document.querySelector('.center__page__content');
 let isExpanded = false;
 
-defile.addEventListener('click', () => {
-    if (isExpanded) {
-        page.style.height = "10vh";
-        centerPage.style.marginTop = "0vh";
-    } else {
-        page.style.height = "35vh";
-        centerPage.style.marginTop = "25vh";
+function handleClick() {
+    const isMobile = window.matchMedia("(max-width: 780px)").matches;
+    if (isMobile) {
+        if (isExpanded) {
+            page.style.height = "10vh";
+            centerPage.style.marginTop = "0vh";
+        } else {
+            page.style.height = "35vh";
+            centerPage.style.marginTop = "25vh";
+        }
+        isExpanded = !isExpanded;
     }
-    isExpanded = !isExpanded;
-});
+}
 
+defile.addEventListener('click', handleClick);
