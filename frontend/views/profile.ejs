@@ -14,6 +14,7 @@
 <main class="container">
     <div class="main__infos">
         <div class="user__picture">
+            <box-icon name='pencil' id="edit-icon"></box-icon>
             <img id="user_picture" alt="Photo de profil">
         </div>
         <div class="user__infos">
@@ -34,6 +35,7 @@
         </div>
     </div>
 
+    <!-- Popup amis-->
     <div id="popup" class="popup">
         <div class="popup-content">
             <span class="close-btn" id="closePopupBtn">&times;</span>
@@ -46,8 +48,25 @@
             </div>
         </div>
     </div>
+
+    <!-- Popup modification de l'icone-->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Modifier la photo de profil</h2>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <label for="fileInput" class="custom-file-upload">
+                    <box-icon type='solid' name='file-image'></box-icon> Ajouter Image
+                </label>
+                <input type="file" id="fileInput" accept="image/*">
+                <img id="imagePreview" src="#" style="display: none; max-width: 100%; margin-top: 20px;">
+                <button type="submit">Valider</button>
+            </form>
+        </div>
+    </div>
 </main>
 
+<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 <script src="/public/js/profile.js"></script>
 </body>
 </html>

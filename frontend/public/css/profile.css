@@ -11,11 +11,32 @@
     align-items: center;
 }
 
+.user__picture {
+    position: relative;
+    display: inline-block;
+}
+
 .user__picture img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     margin: 20px;
+}
+
+#edit-icon {
+    position: absolute;
+    bottom: 30px;
+    right: 25px;
+    background-color: white;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .user__infos h1 {
@@ -172,4 +193,97 @@
 .no__friends {
     font-family: "Roboto Light", sans-serif;
     opacity: 0.5;
+}
+
+
+/* Profile picture pop up*/
+
+/* Popup Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+.modal-content h2 {
+    text-align: center;
+    font-family: "Roboto Light", sans-serif;
+    color: black;
+}
+
+#uploadForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.custom-file-upload {
+    margin: 1rem;
+    font-family: "Roboto Light", sans-serif;
+    display: inline-block;
+    padding: 12px 24px;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.custom-file-upload:hover {
+    background-color: #f0f0f0;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+#uploadForm button {
+    background-color: #707099;
+    color: white;
+    padding: 10px 15px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#uploadForm button:hover {
+    background-color: #505079;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

@@ -1,18 +1,17 @@
 let user_id;
 
 document.addEventListener('DOMContentLoaded', function() {
+
+    // Récupération des informations de l'utilisateur
     fetchProfileInfos();
 
-
+    // Popup pour afficher les amis
     const popup = document.getElementById('popup');
-
     const friendsBtn = document.querySelector('.user__friends__btn');
-
     const closePopupBtn = document.getElementById('closePopupBtn');
 
     friendsBtn.onclick = function() {
         fetchFriends();
-
         popup.style.display = 'block';
     }
 
@@ -21,11 +20,77 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     window.onclick = function(event) {
-
         if (event.target == popup) {
             popup.style.display = 'none';
         }
     }
+
+    // Popup d'edtion de la photo de profil
+
+    var modal = document.getElementById("uploadModal");
+    var btn = document.getElementById("edit-icon");
+    var span = document.getElementsByClassName("close")[0];
+    var fileInput = document.getElementById("fileInput");
+    var imagePreview = document.getElementById("imagePreview");
+
+    btn.onclick = function() {
+        fileInput.value = "";
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    fileInput.onchange = function(event) {
+        var file = event.target.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                console.log("Previewing image:", file.name);
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = "block";
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+
+    document.getElementById("uploadForm").onsubmit = function(event) {
+        event.preventDefault();
+        var fileInput = document.getElementById('fileInput');
+        var file = fileInput.files[0];
+        if (file) {
+            console.log("Uploading file:", file.name);
+            var formData = new FormData();
+            formData.append("file", file);
+
+            fetch("http://localhost:3000/api/user/modify_picture", {
+                method: "POST",
+                credentials: 'include',
+                body: formData,
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Upload successful:', data);
+                    modal.style.display = "none";
+                })
+                .catch(error => {
+                    console.error('Error during upload:', error);
+                });
+        }
+    };
+
 });
 
 function fetchProfileInfos() {
@@ -47,7 +112,7 @@ function fetchProfileInfos() {
                     user_id = user.user_id;
 
                     const profilePicture = document.getElementById('user_picture')
-                    profilePicture.src = "/public/img/" + user.profile_pic;
+                    profilePicture.src = "http://localhost:3000/assets/img/profile_pics/" + user.profile_pic;
 
                     const username = document.getElementById('user_name')
                     username.textContent = user.username;
@@ -89,7 +154,7 @@ function fetchFriends() {
                     friendContainer.classList.add('friend')
 
                     const friendPicture = document.createElement('img')
-                    friendPicture.src = "/public/img/" + friend.profile_pic
+                    friendPicture.src = "http://localhost:3000/assets/img/profile_pics/" + friend.profile_pic
                     friendPicture.alt = "Photo de profil de l'ami"
 
                     const friendUsername = document.createElement('p')

@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const user = data[0];
                 document.querySelector(".container").innerHTML = `
                     <div class="user__info">
-                        <img src="/public/img/${user.profile_pic}" alt="Avatar de ${user.username}" class="user__avatar">
+                        <img src="http://localhost:3000/assets/img/profile_pics/${user.profile_pic}" alt="Avatar de ${user.username}" class="user__avatar">
                         <h1 class="user__username">${user.username}</h1>
                     </div>
                     `

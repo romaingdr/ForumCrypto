@@ -1,6 +1,20 @@
 const Users = require("../modeles/users.modele");
 const crypto = require("crypto");
 const jwt = require('jsonwebtoken');
+const multer = require('multer');
+const path = require('path');
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, path.join(__dirname, '../../assets/img/profile_pics'));
+  },
+  filename: function(req, file, cb) {
+    const uniqueFileName = `${Date.now()}_${file.originalname}`;
+    cb(null, uniqueFileName);
+  }
+});
+
+const upload = multer({ storage: storage }).single('file');
 
 function createSessionToken(accountId, roleId) {
   const payload = {
@@ -18,12 +32,12 @@ class ControllerUsers {
     Users.getUsers((err, result) => {
       if (err) {
         if (result.message === "not found") {
-          res.status(404).send({ message: "Aucun utilisateur trouvé" });
+          res.status(404).send({message: "Aucun utilisateur trouvé"});
           return;
         }
         res
-          .status(500)
-          .send({ message: "Erreur lors de la récupération des utilisateurs" });
+            .status(500)
+            .send({message: "Erreur lors de la récupération des utilisateurs"});
         return;
       }
       res.json(result);
@@ -32,15 +46,15 @@ class ControllerUsers {
 
   static createUser = (req, res) => {
     if (!req.body) {
-      res.status(400).send({ message: "Le contenu ne peut pas être vide" });
+      res.status(400).send({message: "Le contenu ne peut pas être vide"});
       return;
     }
 
     const userPassword = req.body.password;
     const hashedPassword = crypto
-      .createHash("sha512")
-      .update(userPassword)
-      .digest("hex");
+        .createHash("sha512")
+        .update(userPassword)
+        .digest("hex");
 
     const user = {
       username: req.body.username,
@@ -57,8 +71,8 @@ class ControllerUsers {
       if (err) {
         res.status(500).send({
           message:
-            err.message ||
-            "Une erreur s'est produite lors de la création de l'utilisateur",
+              err.message ||
+              "Une erreur s'est produite lors de la création de l'utilisateur",
         });
         return;
       }
@@ -68,15 +82,15 @@ class ControllerUsers {
 
   static loginUser = (req, res) => {
     if (!req.body) {
-      res.status(400).send({ message: "Le contenu ne peut pas être vide" });
+      res.status(400).send({message: "Le contenu ne peut pas être vide"});
       return;
     }
 
     const userPassword = req.body.password;
     const hashedPassword = crypto
-      .createHash("sha512")
-      .update(userPassword)
-      .digest("hex");
+        .createHash("sha512")
+        .update(userPassword)
+        .digest("hex");
 
     const user = {
       email: req.body.email,
@@ -114,42 +128,66 @@ class ControllerUsers {
   };
 
   static getUserById = (req, res) => {
-      let id = res.locals.dataToken.accountId;
-      console.log("id : ", id);
-      Users.getUserById(id, (err, result) => {
-        if (err) {
-          if (result.message === "not found") {
-            res.status(404).send({message: "Aucun utilisateur trouvé"});
-            return;
-          }
-          res
-              .status(500)
-              .send({message: "Erreur lors de la récupération de l'utilisateur"});
+    let id = res.locals.dataToken.accountId;
+    console.log("id : ", id);
+    Users.getUserById(id, (err, result) => {
+      if (err) {
+        if (result.message === "not found") {
+          res.status(404).send({message: "Aucun utilisateur trouvé"});
           return;
         }
-        res.json(result);
+        res
+            .status(500)
+            .send({message: "Erreur lors de la récupération de l'utilisateur"});
+        return;
+      }
+      res.json(result);
+    });
+  }
+
+  static getUserByUsername = (req, res) => {
+    let username = req.params.username;
+    console.log("username : ", username);
+
+    Users.getUserByUsername(username, (err, result) => {
+      if (err) {
+        if (result.message === "not found") {
+          res.status(404).send({message: "Aucun utilisateur trouvé"});
+          return;
+        }
+        res
+            .status(500)
+            .send({message: "Erreur lors de la récupération de l'utilisateur"});
+        return;
+      }
+      res.json(result);
+    });
+  }
+
+  static modifyProfilePicture(req, res) {
+    console.log("Contrôleur de mise à jour de la photo de profil");
+
+    upload(req, res, function(err) {
+      if (err instanceof multer.MulterError) {
+        return res.status(500).json({ message: "Erreur lors du téléchargement du fichier" });
+      } else if (err) {
+        return res.status(500).json({ message: "Une erreur est survenue lors du traitement du fichier" });
+      }
+
+      const userId = res.locals.dataToken.accountId;
+      const filename = req.file.filename;
+
+      Users.modifyProfilePicture(userId, filename, (err, result) => {
+        if (err) {
+          if (result && result.message === "not found") {
+            return res.status(404).json({ message: "Aucun utilisateur trouvé" });
+          }
+          return res.status(500).json({ message: "Erreur lors de la mise à jour de l'image de profil" });
+        }
+        return res.json(result);
       });
-    }
-
-
-    static getUserByUsername = (req, res) => {
-        let username = req.params.username;
-        console.log("username : ", username);
-
-        Users.getUserByUsername(username, (err, result) => {
-            if (err) {
-            if (result.message === "not found") {
-                res.status(404).send({message: "Aucun utilisateur trouvé"});
-                return;
-            }
-            res
-                .status(500)
-                .send({message: "Erreur lors de la récupération de l'utilisateur"});
-            return;
-            }
-            res.json(result);
-        });
-    }
+    });
+  }
 }
 
 module.exports = ControllerUsers;

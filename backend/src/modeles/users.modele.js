@@ -86,6 +86,20 @@ class ModeleUsers {
           res(true, {message: "not found"});
         });
   }
+
+  static modifyProfilePicture(userId, filename, callback) {
+    let sqlQuery = db.format("UPDATE users SET profile_pic = ? WHERE user_id = ?", [filename, userId]);
+
+    db.query(sqlQuery, (err, result) => {
+      if (err) {
+        console.error("Erreur lors de la mise à jour de la photo de profil : ", err);
+        callback(err, null);
+        return;
+      }
+      console.log("Photo de profil mise à jour");
+      callback(null, { message: "success" });
+    });
+  }
 }
 
 module.exports = ModeleUsers;

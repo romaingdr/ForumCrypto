@@ -36,7 +36,7 @@ function fetchFriendsRequests(userId) {
                     const notification = document.createElement("div");
                     notification.classList.add("notification");
                     notification.innerHTML = `
-                        <img onclick="window.location.href='/p/${friendRequest.username}'" class="user__avatar" src="/public/img/${friendRequest.profile_pic}" alt="avatar">
+                        <img onclick="window.location.href='/p/${friendRequest.username}'" class="user__avatar" src="http://localhost:3000/assets/img/profile_pics/${friendRequest.profile_pic}" alt="avatar">
                         <p>${friendRequest.username} souhaite devenir votre ami</p>
                         <div class="notification__actions">
                             <button class="accept__friend" data-id="${friendRequest.id}">Accepter</button>

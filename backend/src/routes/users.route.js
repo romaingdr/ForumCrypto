@@ -24,5 +24,9 @@ module.exports = (app) => {
 
   router.get("/user/:username", users.getUserByUsername);
 
+  // Upload profile picture
+
+  router.post("/user/modify_picture", checkToken, users.modifyProfilePicture);
+
   app.use("/api", router);
 };
