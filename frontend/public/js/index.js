@@ -49,7 +49,7 @@ async function fetchCoinGeckoData() {
     const url = "https://api.coingecko.com/api/v3/coins/markets";
     const params = new URLSearchParams({
         vs_currency: "usd",
-        per_page: 10,
+        per_page: 8,
         page: 1
     });
 
@@ -66,7 +66,7 @@ async function fetchCoinGeckoData() {
     }
 }
 
-function displayData(data) {
+function displayData(data, showAll = false) {
     const cryptoPrice = document.querySelector('.crypto__price');
     if (!cryptoPrice) {
         console.error('Element with id "crypto__price" not found');
@@ -77,13 +77,45 @@ function displayData(data) {
         console.error('Data is undefined or null');
         return;
     }
-    data.forEach(coin => {
+    const coinsToDisplay = showAll ? data : data.slice(0, 4);
+    coinsToDisplay.forEach(coin => {
         const cryptoItem = document.createElement('div');
         cryptoItem.className = 'crypto-item';
         cryptoItem.innerHTML = `
             <img class="crypto__img" src="${coin.image}" alt="${coin.id}">
-            <span>${coin.id}: $${coin.current_price}</span>
+            <span>${coin.name}: $${coin.current_price}</span>
         `;
         cryptoPrice.appendChild(cryptoItem);
     });
 }
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const data = await fetchCoinGeckoData();
+    displayData(data);
+
+    const toggleButton = document.getElementById('toggleButton');
+    let showAll = false;
+
+    toggleButton.addEventListener('click', () => {
+        showAll = !showAll;
+        displayData(data, showAll);
+        toggleButton.textContent = showAll ? 'Voir moins' : 'Voir plus';
+    });
+});
+
+const defile = document.querySelector('#categories__arrow');
+const page = document.querySelector('.left__page__content');
+const centerPage = document.querySelector('.center__page__content');
+let isExpanded = false;
+
+defile.addEventListener('click', () => {
+    if (isExpanded) {
+        page.style.height = "10vh";
+        centerPage.style.marginTop = "0vh";
+    } else {
+        page.style.height = "35vh";
+        centerPage.style.marginTop = "25vh";
+    }
+    isExpanded = !isExpanded;
+});
+

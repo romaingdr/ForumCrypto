@@ -162,13 +162,9 @@
 
 .crypto__price {
     margin-top: 3rem;
+    margin-bottom: 2rem;
     overflow: hidden;
-    overflow-y: auto;
-    /* Défilement vertical si le contenu dépasse */
-    max-height: calc(90vh - 6rem);
-    /* Hauteur maximale ajustée en fonction de l'espace disponible */
     padding-right: 1rem;
-    /* Ajoute un padding pour éviter que le contenu ne soit coupé par la barre de défilement */
 }
 
 .crypto-item {
@@ -189,4 +185,65 @@
 .crypto__img {
     height: 2rem;
     width: auto;
+}
+
+.button__div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+
+}
+
+#toggleButton {
+    background-color: #707099;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .page__container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10vh;
+        height: 150vh;
+        overflow: hidden;
+    }
+
+    .left__page__content {
+        position: absolute;
+        top: 10vh;
+        left: 0;
+        width: 100%;
+        height: 10vh;
+
+    }
+
+    .center__page__content {
+        position: relative;
+        min-height: 60vh;
+        text-align: center;
+        background-color: #707099;
+        overflow: hidden;
+        height: auto;
+        flex: auto;
+    }
+
+    .new__post__button {
+        position: absolute;
+        bottom: 5%;
+        right: 2%;
+    }
+
+
+    .categories-selector {
+        margin: 2rem 0 0 1rem;
+    }
 }
