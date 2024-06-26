@@ -27,6 +27,10 @@ app.get("/profile", (req, res) => {
   res.render("profile");
 });
 
+app.get("/topic", (req, res) => {
+  res.render("topic");
+});
+
 app.get("/p/:username", (req, res) => {
   res.render("user");
 });

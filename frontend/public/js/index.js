@@ -123,3 +123,9 @@ function handleClick() {
 }
 
 defile.addEventListener('click', handleClick);
+
+const redirectTopic = document.querySelector('.new__post__button');
+
+redirectTopic.addEventListener('click', () => {
+    window.location.href = '/topic';
+});
