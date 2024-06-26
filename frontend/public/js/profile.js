@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(data => {
                     console.log('Upload successful:', data);
                     modal.style.display = "none";
+                    window.location.reload();
                 })
                 .catch(error => {
                     console.error('Error during upload:', error);
