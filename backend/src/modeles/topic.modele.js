@@ -2,7 +2,7 @@ const db = require("../utility/config.js");
 
 class ModeleTopic {
     static createTopic(topic, res) {
-        let sqlQuery = db.format("INSERT INTO topics (title, description, id_category, user_id, created_at) VALUES (?, ?, ?, ?, ?)", [topic.title, topic.description, topic.category, topic.id_user, topic.created_at]);
+        let sqlQuery = db.format("INSERT INTO topics (title, description, id_category, user_id, created_at, status) VALUES (?, ?, ?, ?, ?, ?)", [topic.title, topic.description, topic.category, topic.id_user, topic.created_at, topic.status]);
 
         db.query(sqlQuery, (err, result) => {
             if (err) {

@@ -61,6 +61,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         const title = document.getElementById("topic__title").value;
         const description = document.getElementById("topic__description").value;
         const category = document.getElementById("topic__category").value;
+        const status = document.getElementById("topic__status").value;
+
+        if (title.trim() === '' || description.trim() === '' || category.trim() === '' || status.trim() === '') {
+            errorMsg.innerHTML = "Tous les champs doivent être remplis";
+            return;
+        }
 
         const response = await fetch("http://localhost:3000/api/topic", {
             method: "POST",
@@ -68,7 +74,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ title, description, category }),
+            body: JSON.stringify({ title, description, category, status }),
         });
 
         const data = await response.json();

@@ -13,6 +13,7 @@ class ControllerTopic {
             category: req.body.category,
             created_at: new Date(),
             id_user: res.locals.dataToken.accountId,
+            status: req.body.status
         };
 
         console.log('Constructed Topic Object:', topic);

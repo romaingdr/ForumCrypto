@@ -97,7 +97,8 @@ body {
     transform: scale(1.05);
 }
 
-#topic__category {
+#topic__category,
+#topic__status {
     background: transparent;
     border: 0;
     border-bottom: 2px solid #f0f0f0;
@@ -105,10 +106,15 @@ body {
     color: #f0f0f0;
     cursor: pointer;
     font-weight: bold;
-
 }
 
 #topic__category option {
+    font-weight: bold;
+    color: #f0f0f0;
+    background: #222230;
+}
+
+#topic__status option {
     font-weight: bold;
     color: #f0f0f0;
     background: #222230;
