@@ -60,6 +60,7 @@ function displayTopics() {
     fetch('http://localhost:3000/api/topic')
         .then(response => response.json())
         .then(data => {
+            console.log(data);
             const topics = document.querySelector('.topics');
             data.forEach(topic => {
                 const topicElement = document.createElement('div');
@@ -69,12 +70,17 @@ function displayTopics() {
                 const month = String(date.getUTCMonth() + 1).padStart(2, '0');
                 const year = date.getUTCFullYear();
 
+                const tags = topic.tags
+                const tagsArray = tags.split(',');
 
                 topicElement.className = 'topic';
                 topicElement.innerHTML = `
                     <div class="topic__main_infos">
                         <h3 class="topic_title">${topic.title}</h3>
                         <p class="topic_date">${day}/${month}/${year}</p>
+                    </div>
+                    <div class="topic__tags">
+                        ${tagsArray.map(tag => `<span class="tag">#${tag}</span>`).join('')}
                     </div>
                     <div class="topic_description">
                         <p>${topic.description}</p>

@@ -344,3 +344,15 @@ input[type="file"] {
     cursor: pointer;
 }
 
+#logoutButton {
+    font-family: "Comfortaa", sans-serif;
+    background-color: red;
+    cursor: pointer;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 2px solid white;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin: 20px;
+}

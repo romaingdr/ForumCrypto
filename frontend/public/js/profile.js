@@ -10,6 +10,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const friendsBtn = document.querySelector('.user__friends__btn');
     const conversationBtn = document.querySelector('.user__conversations__btn');
     const closePopupBtn = document.getElementById('closePopupBtn');
+    const logoutBtn = document.getElementById('logoutButton');
+
+    logoutBtn.onclick = function() {
+        console.log("Déconnexion de l'utilisateur");
+
+        document.cookie = "cryptolab_session_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+        console.log("Cookie supprimé");
+
+        if (document.cookie.indexOf("cryptolab_session_id=") === -1) {
+            console.log("Le cookie a été supprimé avec succès");
+        } else {
+            console.log("Le cookie n'a pas été supprimé");
+        }
+    }
 
     friendsBtn.onclick = function() {
         fetchFriends();
