@@ -16,7 +16,6 @@ class ControllerTopic {
             status: req.body.status
         };
 
-        console.log('Constructed Topic Object:', topic);
 
         Topic.createTopic(topic, (err, result) => {
             if (err) {

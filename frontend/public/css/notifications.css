@@ -8,7 +8,7 @@
 .main__title {
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    
     font-style: normal;
     color: white;
     font-size: 2rem;
@@ -26,7 +26,7 @@
 .notification {
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    
     font-style: normal;
     display: flex;
     align-items: center;
@@ -73,7 +73,7 @@
 .no__notifications {
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    
     font-style: normal;
     color: white;
     font-size: 1.5rem;
@@ -87,7 +87,7 @@
 #success-popup {
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    
     font-style: normal;
     position: fixed;
     bottom: -50px;

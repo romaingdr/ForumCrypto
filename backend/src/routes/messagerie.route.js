@@ -13,6 +13,14 @@ module.exports = (app) => {
 
     router.post("/conversations", checkToken, messagerie.createConversation);
 
+    // Get a conversation's messages
+
+    router.get("/conversations/:conversationId/messages", checkToken, messagerie.getConversationMessages);
+
+    // Send a message to a conversation
+
+    router.post("/conversations/:conversationId/messages", checkToken, messagerie.sendMessage);
+
     app.use("/api", router);
 };
 

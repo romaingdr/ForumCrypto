@@ -27,9 +27,43 @@ class ModeleMessagerie {
         });
     }
 
-
     static createConversation(idUser, idUser2, res) {
         let sqlQuery = db.format("INSERT INTO conversation (user1_id, user2_id) VALUES (?, ?)", [idUser, idUser2]);
+
+        db.query(sqlQuery, (err, results) => {
+            if (err) {
+                return res(true, { error: err.message });
+            }
+            res(false, results);
+        });
+    }
+
+    static getConversationMessages(conversationId, res) {
+        let sqlQuery = db.format(`
+        SELECT 
+            m.*, 
+            u.username,
+            u.profile_pic
+        FROM 
+            message m
+        INNER JOIN 
+            users u ON u.user_id = m.sender_id
+        WHERE 
+            m.conversation_id = ?
+        ORDER BY 
+            m.sent_at ASC
+    `, [conversationId]);
+
+        db.query(sqlQuery, (err, results) => {
+            if (err) {
+                return res(true, { error: err.message });
+            }
+            res(false, results);
+        });
+    }
+
+    static sendMessage(conversationId, senderId, content, res) {
+        let sqlQuery = db.format("INSERT INTO message (conversation_id, sender_id, content) VALUES (?, ?, ?)", [conversationId, senderId, content]);
 
         db.query(sqlQuery, (err, results) => {
             if (err) {

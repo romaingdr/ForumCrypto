@@ -8,7 +8,7 @@
 .user__not__found {
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    
     font-style: normal;
     color: white;
     font-size: 2rem;
@@ -31,7 +31,7 @@
 .user__username {
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    
     font-style: normal;
     color: white;
     font-size: 2rem;
@@ -41,7 +41,7 @@
 .add__friend__btn {
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    
     font-style: normal;
     color: white;
     background-color: #707099;
@@ -63,7 +63,7 @@
 .pending__friend {
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    
     font-style: normal;
     color: white;
     background-color: #5f5f8d;
@@ -81,7 +81,7 @@
 .is__friend {
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    
     font-style: normal;
     color: white;
     background-color: green;

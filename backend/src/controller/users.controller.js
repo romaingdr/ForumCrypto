@@ -105,9 +105,7 @@ class ControllerUsers {
         return;
       }
 
-      console.log("Création du token de session");
 
-      console.log("result : ", result);
       const sessionToken = createSessionToken(result.userId, result.roleId);
 
       res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
@@ -120,8 +118,6 @@ class ControllerUsers {
         path: '/'
       });
 
-      console.log("Token de session créé : ", sessionToken);
-
       res.status(200).send(result);
     });
 
@@ -129,7 +125,6 @@ class ControllerUsers {
 
   static getUserById = (req, res) => {
     let id = res.locals.dataToken.accountId;
-    console.log("id : ", id);
     Users.getUserById(id, (err, result) => {
       if (err) {
         if (result.message === "not found") {
@@ -147,7 +142,6 @@ class ControllerUsers {
 
   static getUserByUsername = (req, res) => {
     let username = req.params.username;
-    console.log("username : ", username);
 
     Users.getUserByUsername(username, (err, result) => {
       if (err) {
@@ -165,7 +159,6 @@ class ControllerUsers {
   }
 
   static modifyProfilePicture(req, res) {
-    console.log("Contrôleur de mise à jour de la photo de profil");
 
     upload(req, res, function(err) {
       if (err instanceof multer.MulterError) {
