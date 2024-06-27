@@ -11,7 +11,10 @@
     color: white;
     text-align: center;
     margin-top: 20px;
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
 }
 
 
@@ -21,7 +24,10 @@
     color: white;
     text-align: center;
     margin-top: 20px;
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     opacity: 0.5;
     margin-bottom: 2rem;
 }
@@ -38,7 +44,10 @@
     color: #382E60;
     text-align: center;
     margin-top: 20px;
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
 }
 
 .friends_list {
@@ -68,7 +77,10 @@
 }
 
 .friend p {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     font-size: 1rem;
     color: black;
 }
@@ -132,14 +144,20 @@
 }
 
 .selected_conversation p {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     font-size: 1rem;
     margin: 10px;
     color: white;
 }
 
 .conversation p {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     font-size: 1rem;
     margin: 10px;
     color:black;
@@ -149,7 +167,10 @@
     color: white;
     text-align: center;
     margin-top: 20px;
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
 }
 
 .messages_container {
@@ -159,7 +180,10 @@
 }
 
 .select_conv {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     color: #382E60;
     font-size: 1.5rem;
     text-align: center;

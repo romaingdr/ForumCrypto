@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     height: 90vh;
-    background-color: #707099;
+    background-color: #222230;
 }
 
 .main__infos {
@@ -39,15 +39,22 @@
     justify-content: center;
 }
 
+
 .user__infos h1 {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     color: white;
     font-size: 2em;
     margin: 20px;
 }
 
 .user__infos p {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     color: white;
     font-size: 1.5em;
     margin: 20px;
@@ -60,22 +67,28 @@
 }
 
 .biography__container {
-    background-color: rgba(129, 39, 243, 0.2);
-    border: 2px solid white;
+    background-color: #382E60;
+    border: 1px solid white;
     width: 50%;
     height: 40vh;
     border-radius: 20px
 }
 
 .biography__container h2 {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     color: white;
     font-size: 1.5em;
     margin: 20px;
 }
 
 .biography__container p {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     color: white;
     font-size: 1em;
     margin: 20px;
@@ -87,7 +100,10 @@
 }
 
 .more__infos p {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     color: white;
     font-size: 1.5em;
     margin: 10px;
@@ -97,9 +113,12 @@
     text-align: center;
     color: white;
     font-size: 1.5em;
-    font-family: "Roboto Light", sans-serif;
-    background-color: rgba(129, 39, 243, 0.2);
-    border: 2px solid white;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    background-color: #382E60;
+    border: 1px solid white;
     border-radius: 20px;
     padding: 0.5rem;
     width: 50%;
@@ -107,13 +126,21 @@
     cursor: pointer;
 }
 
+.user__friends__btn:hover{
+    cursor: pointer;
+    background-color: hsla(249, 39%, 33%, 0.349);
+}
+
 .user__conversations__btn {
     text-align: center;
     color: white;
     font-size: 1.5em;
-    font-family: "Roboto Light", sans-serif;
-    background-color: rgba(129, 39, 243, 0.2);
-    border: 2px solid white;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    background-color: #382E60;
+    border: 1px solid white;
     border-radius: 20px;
     padding: 0.5rem;
     width: 50%;
@@ -121,6 +148,11 @@
     cursor: pointer;
 }
 /* Friend pop up */
+
+.user__conversations__btn:hover{
+    background-color: hsla(249, 39%, 33%, 0.349);
+    cursor: pointer;
+}
 
 .popup {
     display: none;
@@ -152,9 +184,12 @@
 
 .popup-content h1 {
     text-align: center;
-    color: black;
+    color: #382E60;
     font-size: 1.5em;
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
 }
 
 .close-btn {
@@ -183,7 +218,10 @@
 
 .friend {
     cursor: pointer;
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -203,7 +241,10 @@
 }
 
 .no__friends {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     opacity: 0.5;
 }
 
@@ -235,7 +276,10 @@
 
 .modal-content h2 {
     text-align: center;
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     color: black;
 }
 
@@ -247,7 +291,10 @@
 
 .custom-file-upload {
     margin: 1rem;
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     display: inline-block;
     padding: 12px 24px;
     cursor: pointer;

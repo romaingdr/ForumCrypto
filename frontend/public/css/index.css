@@ -40,7 +40,10 @@
 }
 
 .categories_list a {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     color: white;
     padding: 1rem;
     text-align: center;
@@ -79,7 +82,10 @@
 .posts__selection h2 {
     cursor: pointer;
     color: white;
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     font-size: 1rem;
 }
 
@@ -106,7 +112,10 @@
     flex-direction: row;
     margin: 3rem 0 0 3rem;
     color: white;
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
 }
 
 .communities-selector h2 {
@@ -136,7 +145,10 @@
 
 .community_title {
     color: white;
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
 }
 
 .new__post__button {
@@ -144,7 +156,10 @@
     bottom: 5%;
     right: 20%;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     margin-right: 2rem;
     background-color: #707099;
     color: white;
@@ -165,6 +180,10 @@
     margin-bottom: 2rem;
     overflow: hidden;
     padding-right: 1rem;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
 }
 
 .crypto-item {
@@ -203,7 +222,10 @@
     padding: 0.5rem 1rem;
     border-radius: 10px;
     cursor: pointer;
-
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
 }
 
 

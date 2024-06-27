@@ -6,7 +6,10 @@
 }
 
 .main__title {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     color: white;
     font-size: 2rem;
     margin-top: 5vh;
@@ -21,7 +24,10 @@
 }
 
 .notification {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -65,7 +71,10 @@
 }
 
 .no__notifications {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     color: white;
     font-size: 1.5rem;
     margin-top: 5vh;
@@ -76,7 +85,10 @@
 /* Popups confirmation */
 
 #success-popup {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     position: fixed;
     bottom: -50px;
     left: 50%;

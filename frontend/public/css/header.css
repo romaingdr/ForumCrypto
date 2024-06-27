@@ -46,7 +46,10 @@
     font-size: 2rem;
     color: white;
     font-weight: bold;
-    font-family: "Roboto Thin", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
 }
 
 .center__header__content input {
@@ -66,7 +69,10 @@
 }
 
 .right__header__content a {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     margin-right: 2rem;
     background-color: #6B5AAF;
     color: white;
@@ -136,3 +142,4 @@
     }
 
 }
+

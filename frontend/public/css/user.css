@@ -6,7 +6,10 @@
 }
 
 .user__not__found {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     color: white;
     font-size: 2rem;
     margin-top: 35vh;
@@ -26,14 +29,20 @@
 }
 
 .user__username {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     color: white;
     font-size: 2rem;
     margin-left: 2rem;
 }
 
 .add__friend__btn {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     color: white;
     background-color: #707099;
     border: 1px solid white;
@@ -52,7 +61,10 @@
 }
 
 .pending__friend {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     color: white;
     background-color: #5f5f8d;
     border: 1px solid white;
@@ -67,7 +79,10 @@
 }
 
 .is__friend {
-    font-family: "Roboto Light", sans-serif;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
     color: white;
     background-color: green;
     border: 1px solid white;
