@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Si l'utilisateur a des conversations
             if (data.length) {
-                console.log(data);
                 loadConversations(data);
             } else {
                 // Affichage d'un message si l'utilisateur n'a pas de conversation
@@ -51,6 +50,7 @@ function createConversation(friendId) {
 }
 
 function loadConversations(conversations) {
+    console.log(conversations);
     const conversationsList = document.querySelector('.conversation__list');
 
     conversations.forEach(conversation => {
@@ -75,7 +75,7 @@ function loadConversations(conversations) {
             });
             conversationDiv.classList.remove('conversation');
             conversationDiv.classList.add('selected_conversation');
-            loadConversationMessages(conversation.conversation_id);
+            loadConversationMessages(conversation.conversation_id, conversation.other_user_username, conversation.other_user_profile_pic, conversation.other_user_id);
         });
 
         conversationsList.appendChild(conversationDiv);
@@ -133,6 +133,124 @@ function displayFriends(){
         })
 }
 
-function loadConversationMessages(conversationId) {
-    console.log("Affichage de la conversation : " + conversationId);
+function loadConversationMessages(conversationId, username, profilePic, other_user_id) {
+    const messagesContainer = document.querySelector('.messages_container');
+
+    const selectConvMessage = document.querySelector('.select_conv');
+    selectConvMessage.style.display = 'none';
+
+    // Titre de la conversation
+    const conversationTitle = document.querySelector('.conversation_title');
+    conversationTitle.innerHTML = '';
+
+    const userPic = document.createElement('img');
+    userPic.src = "http://localhost:3000/assets/img/profile_pics/" + profilePic;
+    userPic.alt = "profile_pic";
+
+    const title = document.createElement('h2');
+    title.textContent = username;
+
+    conversationTitle.appendChild(userPic);
+    conversationTitle.appendChild(title);
+
+    // Ajouter le titre de la conversation avant les messages
+    messagesContainer.appendChild(conversationTitle);
+
+    // Récupération des messages de la conversation
+    fetch(`http://localhost:3000/api/conversations/${conversationId}/messages`, {
+        credentials: 'include'
+    })
+        .then(res => res.json())
+        .then(data => {
+            loadMessages(data, other_user_id);
+        });
+
+    // Barre d'envoi de messages
+    const sendMessage = document.createElement('div');
+    sendMessage.classList.add('send_message');
+
+    const messageInput = document.createElement('input');
+    messageInput.type = 'text';
+    messageInput.placeholder = 'Envoyer un message';
+    messageInput.classList.add('message_input');
+
+    const sendButton = document.createElement('i');
+    sendButton.classList.add('bx', 'bx-send');
+    sendButton.id = 'send_message';
+    sendButton.addEventListener('click', function() {
+        const message = messageInput.value;
+        messageInput.value = '';
+        if (message) {
+            fetch(`http://localhost:3000/api/conversations/${conversationId}/messages`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({content: message}),
+                credentials: 'include'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertId) {
+                        console.log("Message envoyé");
+                        loadConversationMessages(conversationId, username, profilePic, other_user_id);
+                    } else {
+                        console.log(data);
+                    }
+            })
+        } else {
+            console.log("Message vide");
+        }
+    });
+
+    sendMessage.appendChild(messageInput);
+    sendMessage.appendChild(sendButton);
+
+    messagesContainer.appendChild(sendMessage);
+}
+
+function loadMessages(messages, other_user_id) {
+    const messagesContainer = document.querySelector('.messages_container');
+
+    const oldMssagesDisplay = document.querySelector('.messages_display');
+    if (oldMssagesDisplay) {
+        oldMssagesDisplay.remove();
+    }
+
+    const messagesDisplay = document.createElement('div');
+    messagesDisplay.classList.add('messages_display');
+    console.log(messages);
+    messagesDisplay.innerHTML = '';
+
+    if (messages.length) {
+        messages.forEach(message => {
+            const messageDiv = document.createElement('div');
+
+            if (message.sender_id == other_user_id) {
+                messageDiv.classList.add('receiver_message');
+                const userPic = document.createElement('img');
+                userPic.src = "http://localhost:3000/assets/img/profile_pics/" + message.profile_pic;
+                userPic.alt = "profile_pic";
+                messageDiv.appendChild(userPic);
+            } else {
+                messageDiv.classList.add('sender_message');
+            }
+            messageDiv.dataset.id = message.message_id;
+
+
+            const content = document.createElement('p');
+            content.textContent = message.content;
+            messageDiv.appendChild(content);
+
+            messagesDisplay.appendChild(messageDiv);
+        });
+        messagesContainer.appendChild(messagesDisplay);
+    } else {
+        console.log("Il n'y a pas de messages");
+        const noMessage = document.createElement('p');
+        noMessage.textContent = "Soyez le premier à envoyer un message !";
+        noMessage.classList.add('no_message');
+        messagesDisplay.appendChild(noMessage);
+        messagesContainer.appendChild(messagesDisplay);
+    }
 }

@@ -30,10 +30,11 @@ class ModeleTopic {
     }
 
     static getAllTopics(res) {
-        let sqlQuery = db.format("SELECT t.*, u.username, u.profile_pic\n" +
-            "        FROM topics t\n" +
-            "        INNER JOIN users u ON t.id_user = u.user_id\n" +
-            "        ORDER BY t.created_at DESC");
+        let sqlQuery = db.format("SELECT t.*, u.username, u.profile_pic, c.title AS category_title\n" +
+            "FROM topics t\n" +
+            "INNER JOIN users u ON t.user_id = u.user_id\n" +
+            "INNER JOIN categories c ON t.id_category = c.id_category\n" +
+            "ORDER BY t.created_at DESC;");
 
         db.query(sqlQuery, (err, results) => {
             if (err) {

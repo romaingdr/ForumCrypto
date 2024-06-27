@@ -48,7 +48,7 @@
     font-weight: bold;
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    
     font-style: normal;
 }
 
@@ -71,7 +71,7 @@
 .right__header__content a {
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    
     font-style: normal;
     margin-right: 2rem;
     background-color: #6B5AAF;

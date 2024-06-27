@@ -5,13 +5,23 @@ module.exports = (app) => {
 
     let router = require("express").Router();
 
+    // Create a topic
+
     router.post("/topic", checkToken, topic.createTopic);
+
+    // Get all topics
 
     router.get("/topic", topic.getAllTopics);
 
+    // Get a topic by id
+
     router.get("/topic/:id", topic.getTopicById);
 
+    // Get topics by category
+
     router.get("/topic/category/:category", topic.getTopicsByCategory);
+
+    // Get topics by user
 
     router.get("/topic/user/:id", topic.getTopicsByUser);
 
