@@ -43,7 +43,7 @@
 .user__infos h1 {
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    
     font-style: normal;
     color: white;
     font-size: 2em;
@@ -53,7 +53,7 @@
 .user__infos p {
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    
     font-style: normal;
     color: white;
     font-size: 1.5em;
@@ -77,7 +77,7 @@
 .biography__container h2 {
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    
     font-style: normal;
     color: white;
     font-size: 1.5em;
@@ -87,7 +87,7 @@
 .biography__container p {
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    
     font-style: normal;
     color: white;
     font-size: 1em;
@@ -102,7 +102,6 @@
 .more__infos p {
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
     font-style: normal;
     color: white;
     font-size: 1.5em;
@@ -115,12 +114,11 @@
     font-size: 1.5em;
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
     font-style: normal;
     background-color: #382E60;
     border: 1px solid white;
     border-radius: 20px;
-    padding: 0.5rem;
+    padding: 0.7rem;
     width: 50%;
     margin: 10px;
     cursor: pointer;
@@ -132,17 +130,17 @@
 }
 
 .user__conversations__btn {
+
     text-align: center;
     color: white;
     font-size: 1.5em;
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
     font-style: normal;
     background-color: #382E60;
     border: 1px solid white;
     border-radius: 20px;
-    padding: 0.5rem;
+    padding: 0.7rem;
     width: 50%;
     margin: 10px;
     cursor: pointer;
@@ -188,7 +186,6 @@
     font-size: 1.5em;
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
     font-style: normal;
 }
 
@@ -220,7 +217,7 @@
     cursor: pointer;
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    
     font-style: normal;
     display: flex;
     flex-direction: row;
@@ -243,7 +240,7 @@
 .no__friends {
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    
     font-style: normal;
     opacity: 0.5;
 }
@@ -278,7 +275,7 @@
     text-align: center;
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    
     font-style: normal;
     color: black;
 }
@@ -293,7 +290,7 @@
     margin: 1rem;
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
-    font-weight: weight;
+    
     font-style: normal;
     display: inline-block;
     padding: 12px 24px;

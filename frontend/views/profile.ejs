@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="/public/css/header.css">
     <link rel="stylesheet" href="/public/css/profile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -17,27 +17,29 @@
 <main class="container">
     <div class="main__infos">
         <div class="user__picture">
+            <box-icon name='pencil' id="edit-icon"></box-icon>
             <img id="user_picture" alt="Photo de profil">
         </div>
         <div class="user__infos">
             <h1 id="user_name">Username</h1>
             <p id="user_created_at">Membre depuis le 01/01/1990</p>
-            
         </div>
     </div>
 
     <div class="bottom__infos">
         <div class="biography__container">
-            <h2 >Biographie</h2>
+            <h2>Biographie</h2>
             <p id="user_biography">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.</p>
         </div>
         <div class="more__infos">
             <p>0 Topics créés</p>
             <p>0 Messages envoyés</p>
             <a class="user__friends__btn">Mes amis</a>
+            <a class="user__conversations__btn">Messagerie</a>
         </div>
     </div>
 
+    <!-- Popup amis-->
     <div id="popup" class="popup">
         <div class="popup-content">
             <span class="close-btn" id="closePopupBtn">&times;</span>
@@ -50,8 +52,25 @@
             </div>
         </div>
     </div>
+
+    <!-- Popup modification de l'icone-->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Modifier la photo de profil</h2>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <label for="fileInput" class="custom-file-upload">
+                    <box-icon type='solid' name='file-image'></box-icon> Ajouter Image
+                </label>
+                <input type="file" id="fileInput" accept="image/*">
+                <img id="imagePreview" src="#" style="display: none; max-width: 100%; margin-top: 20px;">
+                <button type="submit">Valider</button>
+            </form>
+        </div>
+    </div>
 </main>
 
+<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 <script src="/public/js/profile.js"></script>
 </body>
 </html>
