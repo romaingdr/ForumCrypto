@@ -25,9 +25,15 @@ module.exports = (app) => {
 
     router.get("/topic/user/:id", topic.getTopicsByUser);
 
+    // Add tags to a topic
+
     router.post("/topic/:id/tags", topic.addTags);
 
+    // Get topics by tags
+
     router.get("/topic/:id/tags", topic.getTopicsByTags);
+
+    // Update a topic
 
     router.delete("/topic/:id", topic.deleteTopic);
 

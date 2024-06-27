@@ -74,6 +74,27 @@ document.addEventListener("DOMContentLoaded", async () => {
         renderTags();
     }
 
+    const titleInput = document.getElementById('topic__title');
+    const descriptionInput = document.getElementById('topic__description');
+    const titleRemaining = document.getElementById('title__remaining');
+    const descriptionRemaining = document.getElementById('description__remaining');
+
+    const updateRemainingCharacters = (input, counter, maxLength) => {
+        const remaining = maxLength - input.value.length;
+        counter.textContent = remaining;
+    }
+
+    titleInput.addEventListener('input', () => {
+        updateRemainingCharacters(titleInput, titleRemaining, 150);
+    });
+
+    descriptionInput.addEventListener('input', () => {
+        updateRemainingCharacters(descriptionInput, descriptionRemaining, 300);
+    });
+
+    updateRemainingCharacters(titleInput, titleRemaining, 150);
+    updateRemainingCharacters(descriptionInput, descriptionRemaining, 300);
+
     const topicBtn = document.getElementById("topic__btn");
 
     topicBtn.addEventListener("click", async () => {
@@ -116,6 +137,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const data3 = await response3.json();
 
             if (data3.affectedRows) {
+                window.location.href = "/";
                 console.log("Tag ajouté avec succès");
             } else {
                 errorMsg.innerHTML = "Erreur lors de l'ajout des tags";
