@@ -35,9 +35,12 @@ app.get("/p/:username", (req, res) => {
   res.render("user");
 });
 
-
 app.get("/notifications", (req, res) => {
   res.render("notifications");
+});
+
+app.get('/messagerie', (req, res) => {
+  res.render('messagerie');
 });
 
 const PORT = process.env.PORT || 8080;

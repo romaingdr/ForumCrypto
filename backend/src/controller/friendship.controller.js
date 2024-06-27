@@ -110,7 +110,7 @@ class ControllerFriendRequests {
     }
 
     static getFriends = (req, res) => {
-        const id = req.params.id;
+        const id = res.locals.dataToken.accountId
 
         FriendRequests.getFriends(id, (err, result) => {
             if (err) {

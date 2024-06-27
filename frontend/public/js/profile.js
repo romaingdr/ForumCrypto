@@ -8,11 +8,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Popup pour afficher les amis
     const popup = document.getElementById('popup');
     const friendsBtn = document.querySelector('.user__friends__btn');
+    const conversationBtn = document.querySelector('.user__conversations__btn');
     const closePopupBtn = document.getElementById('closePopupBtn');
 
     friendsBtn.onclick = function() {
         fetchFriends();
         popup.style.display = 'block';
+    }
+
+    conversationBtn.onclick = function() {
+        window.location.href = "/messagerie";
     }
 
     closePopupBtn.onclick = function() {
@@ -140,7 +145,7 @@ function fetchProfileInfos() {
 
 function fetchFriends() {
     const friendList = document.querySelector('.friends_list')
-    fetch(`http://localhost:3000/api/friends/${user_id}`, {
+    fetch(`http://localhost:3000/api/friends`, {
         credentials: 'include'
     })
         .then(res => res.json())

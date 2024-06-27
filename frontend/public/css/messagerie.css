@@ -1,0 +1,168 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    background-color: #707099;
+    align-items: center;
+    width: 100%;
+}
+
+.title {
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    font-family: "Roboto Light", sans-serif;
+}
+
+
+/* L'utilisateur n'a pas de conversation */
+
+.no__conversation {
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    font-family: "Roboto Light", sans-serif;
+    opacity: 0.5;
+    margin-bottom: 2rem;
+}
+
+.friends_container {
+    box-shadow: #382E60 10px 10px 10px;
+    background-color: white;
+    border-radius: 20px;
+    width: 30%;
+}
+
+.friends_container h1 {
+    font-size: 1.5rem;
+    color: #382E60;
+    text-align: center;
+    margin-top: 20px;
+    font-family: "Roboto Light", sans-serif;
+}
+
+.friends_list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.friend {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5%;
+    background-color: white;
+    cursor: pointer;
+}
+
+.friend img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.friend p {
+    font-family: "Roboto Light", sans-serif;
+    font-size: 1rem;
+    color: black;
+}
+
+/* L'utilisateur a des conversations */
+
+.conversations__display {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.conversations__container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: #707099;
+}
+
+.conversation__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 1rem;
+}
+
+.selected_conversation {
+    background-color: #382E60;
+    color: white;
+    border-radius: 20px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    margin: 0 2rem;
+}
+
+.conversation {
+    border-radius: 20px;
+    padding: 1rem;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    margin: 0 2rem;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.selected_conversation img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.conversation img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.selected_conversation p {
+    font-family: "Roboto Light", sans-serif;
+    font-size: 1rem;
+    margin: 10px;
+    color: white;
+}
+
+.conversation p {
+    font-family: "Roboto Light", sans-serif;
+    font-size: 1rem;
+    margin: 10px;
+    color:black;
+}
+
+.conversations__title {
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    font-family: "Roboto Light", sans-serif;
+}
+
+.messages_container {
+    flex: 1;
+    background-color: white;
+    border-radius: 20px 0 0 20px;
+}
+
+.select_conv {
+    font-family: "Roboto Light", sans-serif;
+    color: #382E60;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 36%;
+    opacity: 0.5;
+}

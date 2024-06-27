@@ -1,4 +1,5 @@
 const friendship = require("../controller/friendship.controller");
+const checkToken = require('../middleware/checkToken.middleware.js');
 
 module.exports = (app) => {
 
@@ -30,7 +31,7 @@ module.exports = (app) => {
 
     // Get user's friends
 
-    router.get("/friends/:id", friendship.getFriends)
+    router.get("/friends", checkToken, friendship.getFriends)
 
     app.use("/api", router);
 };

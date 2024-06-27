@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>topic</title>
+    <link rel="stylesheet" href="/public/css/header.css">
+    <link rel="stylesheet" href="/public/css/messagerie.css">
+</head>
+
+<body>
+
+<%- include('header.ejs') %>
+
+<main class="container">
+    <div class="conversations__display">
+        <div class="conversations__container">
+            <h1 class="conversations__title">Conversations</h1>
+            <div class="conversation__list">
+            </div>
+        </div>
+
+        <div class="messages_container">
+            <h1 class="select_conv">Veuillez sélectionner une conversation</h1>
+        </div>
+    </div>
+</main>
+
+<script src="/public/js/messagerie.js"></script>
+</body>
+
+</html>
