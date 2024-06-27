@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-
+    // Récupération des catégories
     try {
         const response = await fetch("http://localhost:3000/api/categories", {
             method: "GET",
@@ -26,10 +26,33 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error('Erreur lors de la récupération des catégories:', error);
     }
 
+    const titleInput = document.getElementById('topic__title');
+    const descriptionInput = document.getElementById('topic__description');
+    const titleRemaining = document.getElementById('title__remaining');
+    const descriptionRemaining = document.getElementById('description__remaining');
+
+    const updateRemainingCharacters = (input, counter, maxLength) => {
+        const remaining = maxLength - input.value.length;
+        counter.textContent = remaining;
+    }
+
+    titleInput.addEventListener('input', () => {
+        updateRemainingCharacters(titleInput, titleRemaining, 150);
+    });
+
+    descriptionInput.addEventListener('input', () => {
+        updateRemainingCharacters(descriptionInput, descriptionRemaining, 300);
+    });
+
+    updateRemainingCharacters(titleInput, titleRemaining, 150);
+    updateRemainingCharacters(descriptionInput, descriptionRemaining, 300);
+
+
 
 
 
     const topicBtn = document.getElementById("topic__btn");
+
 
     topicBtn.addEventListener("click", async () => {
         const errorMsg = document.getElementById("error__message");
@@ -38,8 +61,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         const title = document.getElementById("topic__title").value;
         const description = document.getElementById("topic__description").value;
         const category = document.getElementById("topic__category").value;
-
-
 
         const response = await fetch("http://localhost:3000/api/topic", {
             method: "POST",

@@ -1,6 +1,122 @@
-html{
+html {
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
     font-weight: weight;
     font-style: normal;
+}
+
+body {
+    background-color: #222230;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+
+}
+
+.topic__box {
+    display: flex;
+    gap: 1.5rem;
+    background: linear-gradient(135deg, #382E60, #1a042e);
+    width: 45%;
+    height: 50vh;
+    padding: 2.5rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.topic__box__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    width: 50%;
+    padding: 20px;
+}
+
+.topic__box__right {
+    background-image: url("/public/img/ethtopic2.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 50%;
+
+}
+
+.topic__page__title {
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+#topic__title,
+#topic__description {
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid #f0f0f0;
+    padding: 10px;
+    color: #f0f0f0;
+}
+
+#topic__title::placeholder,
+#topic__description::placeholder {
+    font-weight: bold;
+    color: #f0f0f0;
+}
+
+.topic__information {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#topic__btn {
+    background-color: #f0f0f0;
+    color: #222230;
+    border: 0;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 150px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#topic__btn:hover {
+    transform: scale(1.05);
+}
+
+#topic__category {
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid #f0f0f0;
+    padding: 10px;
+    color: #f0f0f0;
+    cursor: pointer;
+    font-weight: bold;
+
+}
+
+#topic__category option {
+    font-weight: bold;
+    color: #f0f0f0;
+    background: #222230;
+}
+
+#description__remaining,
+#title__remaining {
+    color: #f0f0f0;
+    font-size: 0.8rem;
+
 }
