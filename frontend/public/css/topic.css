@@ -76,9 +76,10 @@ body {
 }
 
 .topic__information {
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.25rem;
 }
 
 #topic__btn {
@@ -98,7 +99,8 @@ body {
 }
 
 #topic__category,
-#topic__status {
+#topic__status,
+#topic__tags {
     background: transparent;
     border: 0;
     border-bottom: 2px solid #f0f0f0;
@@ -106,6 +108,12 @@ body {
     color: #f0f0f0;
     cursor: pointer;
     font-weight: bold;
+}
+
+#topic__tags::placeholder {
+    font-weight: bold;
+    color: #f0f0f0;
+
 }
 
 #topic__category option {
@@ -125,4 +133,40 @@ body {
     color: #f0f0f0;
     font-size: 0.8rem;
 
+}
+
+.remove-icon {
+    filter: invert(100%);
+}
+
+.remove-icon:hover {
+    cursor: pointer;
+}
+
+.tags {
+    display: flex;
+    gap: 5px;
+    flex-wrap: nowrap;
+    overflow: hidden;
+
+}
+
+
+.tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #6B5AAF;
+    width: fit-content;
+    padding: 2.5px 5px;
+    border-radius: 5px;
+}
+
+#error__message {
+    color: red;
+    font-weight: bold;
+    height: 20px;
+    /* Réservez de l'espace pour le message d'erreur */
+    margin-top: 10px;
+    /* Ajoutez un espace au-dessus du message d'erreur */
 }

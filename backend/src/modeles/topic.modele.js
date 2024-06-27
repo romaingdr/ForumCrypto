@@ -11,7 +11,21 @@ class ModeleTopic {
                 return;
             }
             console.log("Topic créé");
-            res(false, { message: "success" });
+            res(false, result);
+        });
+    }
+
+    static addTags(id, tags, res) {
+        let sqlQuery = db.format("INSERT INTO tags (id_topic, tag_name) VALUES ?", [tags.map(tag => [id, tag])]);
+
+        db.query(sqlQuery, (err, result) => {
+            if (err) {
+                console.log("Erreur lors de l'ajout des tags : ", err);
+                res(true, err);
+                return;
+            }
+            console.log("Tags ajoutés");
+            res(false, result);
         });
     }
 
@@ -42,6 +56,7 @@ class ModeleTopic {
             res(false, results);
         });
     }
+
 
     static getTopicsByCategory(category, res) {
         let sqlQuery = db.format("SELECT t.*, u.username, u.profile_pic\n" +

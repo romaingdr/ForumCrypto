@@ -26,33 +26,55 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error('Erreur lors de la récupération des catégories:', error);
     }
 
-    const titleInput = document.getElementById('topic__title');
-    const descriptionInput = document.getElementById('topic__description');
-    const titleRemaining = document.getElementById('title__remaining');
-    const descriptionRemaining = document.getElementById('description__remaining');
+    const tagsContainer = document.getElementById('tags-container');
+    const tagsInput = document.getElementById('topic__tags');
+    const errorMsg = document.getElementById('error__message');
 
-    const updateRemainingCharacters = (input, counter, maxLength) => {
-        const remaining = maxLength - input.value.length;
-        counter.textContent = remaining;
+    let tags = [];
+
+    tagsInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && tagsInput.value.trim() !== '') {
+            if (tags.length >= 3) {
+                errorMsg.innerHTML = "Vous ne pouvez ajouter que 3 tags";
+                return;
+            }
+
+            const tag = tagsInput.value.trim();
+
+            if (!tags.includes(tag)) {
+                tags.push(tag);
+                renderTags();
+            }
+
+            tagsInput.value = '';
+            errorMsg.innerHTML = '';
+        }
+    });
+
+    function renderTags() {
+        tagsContainer.innerHTML = '';
+        tags.forEach(tag => {
+            const tagElement = document.createElement('div');
+            tagElement.classList.add('tag');
+            tagElement.textContent = tag;
+            const removeIcon = document.createElement('box-icon');
+            removeIcon.setAttribute('name', 'x-circle');
+            removeIcon.classList.add('remove-icon');
+            removeIcon.addEventListener('click', () => {
+                removeTag(tag);
+            });
+
+            tagElement.appendChild(removeIcon);
+            tagsContainer.appendChild(tagElement);
+        });
     }
 
-    titleInput.addEventListener('input', () => {
-        updateRemainingCharacters(titleInput, titleRemaining, 150);
-    });
-
-    descriptionInput.addEventListener('input', () => {
-        updateRemainingCharacters(descriptionInput, descriptionRemaining, 300);
-    });
-
-    updateRemainingCharacters(titleInput, titleRemaining, 150);
-    updateRemainingCharacters(descriptionInput, descriptionRemaining, 300);
-
-
-
-
+    function removeTag(tagToRemove) {
+        tags = tags.filter(tag => tag !== tagToRemove);
+        renderTags();
+    }
 
     const topicBtn = document.getElementById("topic__btn");
-
 
     topicBtn.addEventListener("click", async () => {
         const errorMsg = document.getElementById("error__message");
@@ -68,7 +90,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             return;
         }
 
-        const response = await fetch("http://localhost:3000/api/topic", {
+        const response2 = await fetch("http://localhost:3000/api/topic", {
             method: "POST",
             credentials: 'include',
             headers: {
@@ -77,10 +99,27 @@ document.addEventListener("DOMContentLoaded", async () => {
             body: JSON.stringify({ title, description, category, status }),
         });
 
-        const data = await response.json();
+        const data = await response2.json();
 
-        if (data.message === "success") {
-            window.location.href = "/";
+        if (data.insertId) {
+            const idTopic = data.insertId;
+
+            const response3 = await fetch(`http://localhost:3000/api/topic/${idTopic}/tags`, {
+                method: "POST",
+                credentials: 'include',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ tags: tags }),
+            });
+
+            const data3 = await response3.json();
+
+            if (data3.affectedRows) {
+                console.log("Tag ajouté avec succès");
+            } else {
+                errorMsg.innerHTML = "Erreur lors de l'ajout des tags";
+            }
         } else {
             errorMsg.innerHTML = "Erreur lors de la création du topic";
         }

@@ -15,6 +15,10 @@ module.exports = (app) => {
 
     router.get("/topic/user/:id", topic.getTopicsByUser);
 
+    router.post("/topic/:id/tags", topic.addTags);
+
+    router.get("/topic/:id/tags", topic.getTopicsByTags);
+
     router.delete("/topic/:id", topic.deleteTopic);
 
     app.use("/api", router);

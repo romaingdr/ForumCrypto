@@ -26,10 +26,27 @@ class ControllerTopic {
                 });
                 return;
             }
-            res.status(201).send({ message: "success" });
+            res.status(201).send(result);
 
         });
     }
+
+    static addTags = (req, res) => {
+        const id = req.params.id;
+        const tags = req.body.tags;
+        console.log('Tags:', tags);
+        Topic.addTags(id, tags, (err, result) => {
+            if (err) {
+                res.status(500).send({
+                    message:
+                        err.message || "Une erreur s'est produite lors de l'ajout des tags"
+                });
+                return;
+            }
+            res.status(200).send(result);
+        });
+    }
+
 
     static getAllTopics = (req, res) => {
         Topic.getAllTopics((err, result) => {
@@ -85,6 +102,20 @@ class ControllerTopic {
             res.status(200).send(result);
         }
         );
+    }
+
+    static getTopicsByTags = (req, res) => {
+        const id = req.params.id;
+        Topic.getTopicsByTags(id, (err, result) => {
+            if (err) {
+                res.status(500).send({
+                    message:
+                        err.message || "Une erreur s'est produite lors de la récupération des topics"
+                });
+                return;
+            }
+            res.status(200).send(result);
+        });
     }
 
     static deleteTopic = (req, res) => {

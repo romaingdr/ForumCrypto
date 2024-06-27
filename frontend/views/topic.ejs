@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </head>
 
 <body>
@@ -38,6 +39,12 @@
                                 <option value="public">Public</option>
                                 <option value="prive">Privé</option>
                             </select>
+                        </div>
+                        <div class="topic__input">
+                            <input type="text" id="topic__tags" name="topic__tags" placeholder="Tags" autocomplete="off"
+                                maxlength="10">
+                        </div>
+                        <div class="tags" id="tags-container">
                         </div>
                         <button id="topic__btn">send</button>
                         <p id="error__message"></p>
