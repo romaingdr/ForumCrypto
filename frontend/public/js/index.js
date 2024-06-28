@@ -1,8 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     // Toggle entre posts du général et des suivis
     const notSelectedPosts = document.querySelector('.not_selected__posts');
     const selectedPosts = document.querySelector('.selected__posts');
+
+    let allTopics = [];
+    let allFriends = [];
+
+    function getTopics() {
+        return fetch('http://localhost:3000/api/topic')
+            .then(response => response.json())
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    getTopics().then(data => {
+        allTopics = data;
+        displayTopics(allTopics);
+    });
+
+    function getFriends() {
+        return fetch('http://localhost:3000/api/friends', {
+            credentials: 'include'
+        })
+            .then(response => response.json())
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    getFriends().then(data => {
+        data.forEach(friend => {
+            allFriends.push(friend.user_id);
+        })
+    });
 
     function toggleSelection(clickedElement, otherElement) {
         clickedElement.classList.add('selected__posts');
@@ -12,10 +43,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     notSelectedPosts.addEventListener('click', () => {
+        // Topics suivis
+        console.log(allFriends);
+        displayTopics(allTopics.filter(topic => allFriends.includes(topic.user_id)));
         toggleSelection(notSelectedPosts, selectedPosts);
     });
 
     selectedPosts.addEventListener('click', () => {
+        // Topics généraux
+        displayTopics(allTopics);
         toggleSelection(selectedPosts, notSelectedPosts);
     });
 
@@ -37,8 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Affichage des topics
-    displayTopics();
 
     // Affichage des cryptos avec l'api coinGecko
     fetchCoinGeckoData().then(data => {
@@ -55,26 +89,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// Fonction pour récupérer les topics du forum
-function displayTopics() {
-    fetch('http://localhost:3000/api/topic')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            const topics = document.querySelector('.topics');
-            data.forEach(topic => {
-                const topicElement = document.createElement('div');
 
-                const date = new Date(topic.created_at);
-                const day = String(date.getUTCDate()).padStart(2, '0');
-                const month = String(date.getUTCMonth() + 1).padStart(2, '0');
-                const year = date.getUTCFullYear();
 
-                const tags = topic.tags
-                const tagsArray = tags.split(',');
+// Fonction pour afficher les topics
 
-                topicElement.className = 'topic';
-                topicElement.innerHTML = `
+function displayTopics(data) {
+    const topics = document.querySelector('.topics');
+    topics.innerHTML = '';
+    data.forEach(topic => {
+        const topicElement = document.createElement('div');
+
+        const date = new Date(topic.created_at);
+        const day = String(date.getUTCDate()).padStart(2, '0');
+        const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+        const year = date.getUTCFullYear();
+
+        const tags = topic.tags
+        const tagsArray = tags.split(',');
+
+        topicElement.className = 'topic';
+        topicElement.innerHTML = `
                     <div class="topic__main_infos">
                         <h3 class="topic_title">${topic.title}</h3>
                         <p class="topic_date">${day}/${month}/${year}</p>
@@ -95,14 +129,9 @@ function displayTopics() {
                         </div>
                     </div>                
                 `;
-                topics.appendChild(topicElement);
-            });
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+        topics.appendChild(topicElement);
+    });
 }
-
 
 // Fonction pour récupérer toutes les catégories du forum
 function fetchCategories() {
