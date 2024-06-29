@@ -43,6 +43,10 @@ app.get('/messagerie', (req, res) => {
   res.render('messagerie');
 });
 
+app.get('/c/:category', (req, res) => {
+    res.render('category');
+});
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server is running on port ${PORT}`);

@@ -63,14 +63,21 @@ class ModeleTopic {
 
 
     static getTopicsByCategory(category, res) {
-        let sqlQuery = db.format("SELECT t.*, u.username, u.profile_pic\n" +
-            "        FROM topics t\n" +
-            "        INNER JOIN users u ON t.id_user = u.user_id\n" +
-            "        WHERE t.id_category = ?\n" +
-            "        ORDER BY t.created_at DESC", [category]);
+        let sqlQuery = db.format(`
+            SELECT t.*, u.username, u.profile_pic, c.title AS category_title, 
+                   GROUP_CONCAT(g.tag_name SEPARATOR ', ') AS tags 
+            FROM topics t 
+            INNER JOIN users u ON t.user_id = u.user_id 
+            INNER JOIN categories c ON t.id_category = c.id_category 
+            LEFT JOIN tags g ON t.id_topic = g.id_topic 
+            WHERE t.id_category = ?
+            GROUP BY t.id_topic 
+            ORDER BY t.created_at DESC;
+        `, [category]);
 
         db.query(sqlQuery, (err, results) => {
             if (err) {
+                console.log("Erreur lors de la récupération des topics par catégorie : ", err);
                 return res(true, { error: err.message });
             }
             res(false, results);

@@ -11,6 +11,17 @@ class ModeleCategories {
             res(false, results);
         });
     }
+
+    static getCategoryByName(category, res) {
+        let sqlQuery = db.format("SELECT * FROM categories WHERE title = ?", [category]);
+
+        db.query(sqlQuery, (err, results) => {
+            if (err) {
+                return res(true, { error: err.message });
+            }
+            res(false, results);
+        });
+    }
 }
 
 module.exports = ModeleCategories;

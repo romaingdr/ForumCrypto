@@ -73,10 +73,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    const cryptoArrow = document.getElementById('crypto__arrow')
+    const cryptoList = document.querySelector('.crypto__price');
+    const moreCryptoButton = document.getElementById('toggleButton');
 
     // Affichage des cryptos avec l'api coinGecko
     fetchCoinGeckoData().then(data => {
         displayData(data);
+    });
+
+    cryptoArrow.addEventListener('click', () => {
+        if (cryptoArrow.classList.contains('bx-chevron-right')) {
+            cryptoArrow.classList.remove('bx-chevron-right');
+            cryptoArrow.classList.add('bx-chevron-down');
+            cryptoList.style.display = 'block';
+            moreCryptoButton.style.display = 'block';
+        } else {
+            cryptoArrow.classList.remove('bx-chevron-down');
+            cryptoArrow.classList.add('bx-chevron-right');
+            cryptoList.style.display = 'none';
+            moreCryptoButton.style.display = 'none';
+        }
     });
 
     // Redirection vers la page de création de topic
@@ -144,6 +161,7 @@ function fetchCategories() {
             data.forEach(category => {
                 const categoryElement = document.createElement('a');
                 categoryElement.textContent = category.title;
+                categoryElement.href = `/c/${category.title}`;
                 categoriesList.appendChild(categoryElement);
             });
         });
@@ -191,7 +209,8 @@ function displayData(data, showAll = false) {
         cryptoItem.className = 'crypto-item';
         cryptoItem.innerHTML = `
             <img class="crypto__img" src="${coin.image}" alt="${coin.id}">
-            <span>${coin.name}: $${coin.current_price}</span>
+            <p class="crypto-name">${coin.name}</p>
+            <p class="crypto-price">${coin.current_price}$</p>
         `;
         cryptoPrice.appendChild(cryptoItem);
     });

@@ -8,6 +8,10 @@ module.exports = (app) => {
 
     router.get("/categories", categories.getAllCategories);
 
+    // Get category by name
+
+    router.get("/categories/:category", categories.getCategoryByName);
+
     app.use("/api", router);
 };
 
