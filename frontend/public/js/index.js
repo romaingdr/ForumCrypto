@@ -150,7 +150,12 @@ function displayTopics(data, friend = false) {
                     </div>
                 </div>`;
 
+            topicElement.addEventListener('click', () => {
+                window.location.href = `/t/${topic.id_topic}`;
+            });
+
             topics.appendChild(topicElement);
+
         }
     });
 }

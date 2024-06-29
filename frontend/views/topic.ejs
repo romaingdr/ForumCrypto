@@ -4,60 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>topic</title>
+    <title>Accueil Forum</title>
     <link rel="stylesheet" href="/public/css/header.css">
     <link rel="stylesheet" href="/public/css/topic.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </head>
 
 <body>
 
-    <%- include('header.ejs') %>
+<%- include('header.ejs') %>
 
-        <main class="container">
-            <div class="topic__box">
-                <div class="topic__box__left">
-                    <div class="topic__information">
-                        <div class="topic__input">
-                            <input type="text" id="topic__title" name="topic__title" placeholder="Titre du topic"
-                                maxlength="150" required>
-                            <span id="title__remaining">150</span>
-                        </div>
-                        <div class="topic__input">
-                            <input type="text" id="topic__description" name="topic__description"
-                                placeholder="Description" maxlength="300" required>
-                            <span id="description__remaining">300</span>
-                        </div>
-                        <div class="topic__input">
-                            <select name="topic__category" id="topic__category"></select>
-                        </div>
-                        <div class="topic__input">
-                            <select name="topic__status" id="topic__status">
-                                <option value="public">Public</option>
-                                <option value="prive">Privé</option>
-                            </select>
-                        </div>
-                        <div class="topic__input">
-                            <input type="text" id="topic__tags" name="topic__tags" placeholder="Tags" autocomplete="off"
-                                maxlength="10">
-                        </div>
-                        <div class="tags" id="tags-container">
-                        </div>
-                        <button id="topic__btn">send</button>
-                        <p id="error__message"></p>
-                    </div>
-                </div>
-                <div class="topic__box__right">
+<main class="container">
+    <h1 class="title">Affichage du topic</h1>
+</main>
 
-                </div>
-            </div>
-
-        </main>
-
-        <script src="/public/js/topic.js"></script>
 </body>
+
+<script src="/public/js/topic.js"></script>
 
 </html>
