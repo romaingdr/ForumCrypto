@@ -22,6 +22,8 @@ class ModeleCategories {
             res(false, results);
         });
     }
+
+
 }
 
 module.exports = ModeleCategories;

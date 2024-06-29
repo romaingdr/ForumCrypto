@@ -99,14 +99,6 @@
     flex-direction: column;
 }
 
-.more__infos p {
-    font-family: "Comfortaa", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-    color: white;
-    font-size: 1.5em;
-    margin: 10px;
-}
 
 .user__friends__btn {
     text-align: center;
@@ -119,7 +111,6 @@
     border: 1px solid white;
     border-radius: 20px;
     padding: 0.7rem;
-    width: 50%;
     margin: 10px;
     cursor: pointer;
 }
@@ -130,7 +121,6 @@
 }
 
 .user__conversations__btn {
-
     text-align: center;
     color: white;
     font-size: 1.5em;
@@ -141,10 +131,25 @@
     border: 1px solid white;
     border-radius: 20px;
     padding: 0.7rem;
-    width: 50%;
     margin: 10px;
     cursor: pointer;
 }
+
+.user__topics__btn {
+    text-align: center;
+    color: white;
+    font-size: 1.5em;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    background-color: #382E60;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 0.7rem;
+    margin: 10px;
+    cursor: pointer;
+}
+
 /* Friend pop up */
 
 .user__conversations__btn:hover{

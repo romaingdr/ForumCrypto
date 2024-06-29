@@ -130,6 +130,36 @@ class ControllerTopic {
             res.status(200).send({ message: "success" });
         });
     }
+
+    static getMyTopics = (req, res) => {
+        const id = res.locals.dataToken.accountId;
+        Topic.getTopicsByUser(id, (err, result) => {
+            if (err) {
+                res.status(500).send({
+                    message:
+                        err.message || "Une erreur s'est produite lors de la récupération des topics"
+                });
+                return;
+            }
+            res.status(200).send(result);
+        }
+        );
+    }
+
+    static updateStatus = (req, res) => {
+        const id = req.params.id;
+        const status = req.body.status;
+        Topic.updateStatus(id, status, (err, result) => {
+            if (err) {
+                res.status(500).send({
+                    message:
+                        err.message || "Une erreur s'est produite lors de la mise à jour du statut"
+                });
+                return;
+            }
+            res.status(200).send(result);
+        });
+    }
 }
 
 module.exports = ControllerTopic;

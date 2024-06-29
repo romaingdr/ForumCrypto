@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     notSelectedPosts.addEventListener('click', () => {
         // Topics suivis
         console.log(allFriends);
-        displayTopics(allTopics.filter(topic => allFriends.includes(topic.user_id)));
+        displayTopics(allTopics.filter(topic => allFriends.includes(topic.user_id)), true);
         toggleSelection(notSelectedPosts, selectedPosts);
     });
 
@@ -110,45 +110,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Fonction pour afficher les topics
 
-function displayTopics(data) {
+function displayTopics(data, friend = false) {
     const topics = document.querySelector('.topics');
     topics.innerHTML = '';
+
     data.forEach(topic => {
-        const topicElement = document.createElement('div');
+        // Check if the topic should be displayed based on its status and the friend parameter
+        if (topic.status !== 'archived' && (friend || topic.status === 'public')) {
 
-        const date = new Date(topic.created_at);
-        const day = String(date.getUTCDate()).padStart(2, '0');
-        const month = String(date.getUTCMonth() + 1).padStart(2, '0');
-        const year = date.getUTCFullYear();
+            const topicElement = document.createElement('div');
 
-        const tags = topic.tags
-        const tagsArray = tags.split(',');
+            const date = new Date(topic.created_at);
+            const day = String(date.getUTCDate()).padStart(2, '0');
+            const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+            const year = date.getUTCFullYear();
 
-        topicElement.className = 'topic';
-        topicElement.innerHTML = `
-                    <div class="topic__main_infos">
-                        <h3 class="topic_title">${topic.title}</h3>
-                        <p class="topic_date">${day}/${month}/${year}</p>
+            const tags = topic.tags;
+            const tagsArray = tags.split(',');
+
+            topicElement.className = 'topic';
+            topicElement.innerHTML = `
+                <div class="topic__main_infos">
+                    <h3 class="topic_title">${topic.title}</h3>
+                    <p class="topic_date">${day}/${month}/${year}</p>
+                </div>
+                <div class="topic__tags">
+                    ${tagsArray.map(tag => `<span class="tag">#${tag.trim()}</span>`).join('')}
+                </div>
+                <div class="topic_description">
+                    <p>${topic.description}</p>
+                </div>
+                <div class="topic__other_infos">
+                    <div class="topic_user">
+                        <img class="user_profile_pic" src="http://localhost:3000/assets/img/profile_pics/${topic.profile_pic}">
+                        <p class="topic_username">${topic.username}</p>
                     </div>
-                    <div class="topic__tags">
-                        ${tagsArray.map(tag => `<span class="tag">#${tag}</span>`).join('')}
+                    <div class="topic__category">
+                        <p>${topic.category_title}</p>
                     </div>
-                    <div class="topic_description">
-                        <p>${topic.description}</p>
-                    </div>
-                    <div class="topic__other_infos">
-                        <div class="topic_user">
-                            <img class="user_profile_pic" src="http://localhost:3000/assets/img/profile_pics/${topic.profile_pic}">
-                            <p class="topic_username">${topic.username} </p>
-                        </div>
-                        <div class="topic__category">
-                            <p>${topic.category_title}</p>
-                        </div>
-                    </div>                
-                `;
-        topics.appendChild(topicElement);
+                </div>`;
+
+            topics.appendChild(topicElement);
+        }
     });
 }
+
 
 // Fonction pour récupérer toutes les catégories du forum
 function fetchCategories() {

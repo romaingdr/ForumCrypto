@@ -37,5 +37,13 @@ module.exports = (app) => {
 
     router.delete("/topic/:id", topic.deleteTopic);
 
+    // Get user's topics
+
+    router.get("/my-topics", checkToken, topic.getMyTopics);
+
+    // Update a topic status
+
+    router.put("/topic/:id/status", topic.updateStatus);
+
     app.use("/api", router);
 };

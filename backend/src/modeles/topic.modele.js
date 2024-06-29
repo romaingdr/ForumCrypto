@@ -83,6 +83,56 @@ class ModeleTopic {
             res(false, results);
         });
     }
+
+    static getTopicsByUser(id, res) {
+        let sqlQuery = db.format(`
+            SELECT t.*, u.username, u.profile_pic, c.title AS category_title, 
+                   GROUP_CONCAT(g.tag_name SEPARATOR ', ') AS tags 
+            FROM topics t 
+            INNER JOIN users u ON t.user_id = u.user_id 
+            INNER JOIN categories c ON t.id_category = c.id_category 
+            LEFT JOIN tags g ON t.id_topic = g.id_topic 
+            WHERE t.user_id = ?
+            GROUP BY t.id_topic 
+            ORDER BY t.created_at DESC;
+        `, [id]);
+
+        db.query(sqlQuery, (err, results) => {
+            if (err) {
+                console.log("Erreur lors de la récupération des topics par utilisateur : ", err);
+                return res(true, { error: err.message });
+            }
+            res(false, results);
+        });
+    }
+
+    static deleteTopic(id, res) {
+        let sqlQuery = db.format("DELETE FROM topics WHERE id_topic = ?", [id]);
+
+        db.query(sqlQuery, (err, result) => {
+            if (err) {
+                console.log("Erreur lors de la suppression du topic : ", err);
+                res(true, err);
+                return;
+            }
+            console.log("Topic supprimé");
+            res(false, result);
+        });
+    }
+
+    static updateStatus(id, status, res) {
+        let sqlQuery = db.format("UPDATE topics SET status = ? WHERE id_topic = ?", [status, id]);
+
+        db.query(sqlQuery, (err, result) => {
+            if (err) {
+                console.log("Erreur lors de la mise à jour du statut : ", err);
+                res(true, err);
+                return;
+            }
+            console.log("Statut mis à jour");
+            res(false, result);
+        });
+    }
 }
 
 module.exports = ModeleTopic;

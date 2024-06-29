@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const popup = document.getElementById('popup');
     const friendsBtn = document.querySelector('.user__friends__btn');
     const conversationBtn = document.querySelector('.user__conversations__btn');
+    const myTopicsBtn = document.querySelector('.user__topics__btn');
     const closePopupBtn = document.getElementById('closePopupBtn');
     const logoutBtn = document.getElementById('logoutButton');
 
@@ -33,6 +34,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     conversationBtn.onclick = function() {
         window.location.href = "/messagerie";
+    }
+
+    myTopicsBtn.onclick = function() {
+        window.location.href = "/my-topics";
     }
 
     closePopupBtn.onclick = function() {
