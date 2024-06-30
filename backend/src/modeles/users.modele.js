@@ -100,6 +100,59 @@ class ModeleUsers {
       callback(null, { message: "success" });
     });
   }
+
+  static search(query, callback) {
+    const likeQuery = `%${query}%`;
+
+    const usersQuery = `
+        SELECT profile_pic, username
+        FROM users
+        WHERE username LIKE ?
+    `;
+
+    const topicsQuery = `
+        SELECT *
+        FROM topics
+        WHERE title LIKE ?
+           OR description LIKE ?
+    `;
+
+    const tagsQuery = `
+      SELECT tags.*, topics.title AS topic_title, topics.description AS topic_description
+      FROM tags
+             INNER JOIN topics ON tags.id_topic = topics.id_topic
+      WHERE tags.tag_name = ?;
+    `;
+
+    db.query(usersQuery, [likeQuery], (errUsers, usersResults) => {
+      if (errUsers) {
+        console.error("Erreur lors de la requête pour les utilisateurs :", errUsers);
+        return callback(errUsers, null);
+      }
+
+      db.query(topicsQuery, [likeQuery, likeQuery], (errTopics, topicsResults) => {
+        if (errTopics) {
+          console.error("Erreur lors de la requête pour les topics :", errTopics);
+          return callback(errTopics, null);
+        }
+
+        db.query(tagsQuery, [query], (errTags, tagsResults) => {
+          if (errTags) {
+            console.error("Erreur lors de la requête pour les tags :", errTags);
+            return callback(errTags, null);
+          }
+
+          const results = {
+            users: usersResults,
+            topics: topicsResults,
+            tags: tagsResults
+          };
+
+          callback(null, results);
+        });
+      });
+    });
+  }
 }
 
 module.exports = ModeleUsers;

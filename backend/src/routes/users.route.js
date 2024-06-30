@@ -28,5 +28,9 @@ module.exports = (app) => {
 
   router.post("/user/modify_picture", checkToken, users.modifyProfilePicture);
 
+  // Search users, topics, tags from query
+
+    router.get("/search", users.search);
+    
   app.use("/api", router);
 };

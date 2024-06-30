@@ -1,5 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
     loadSession();
+
+    const searchInput = document.getElementById('searchInput');
+
+    searchInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            const query = searchInput.value.trim();
+            if (query) {
+                const searchUrl = `/search?q=${encodeURIComponent(query)}`;
+                window.location.href = searchUrl;
+            }
+        }
+    });
 });
 
 function loadSession() {

@@ -54,19 +54,29 @@
 
 .center__header__content input {
     background-color: #382E60;
-    border: 5px solid #6B5AAF;
+    border: 2px solid #6B5AAF;
     width: 15rem;
     height: 1.5rem;
     font-weight: bold;
+    font-family: "Comfortaa", sans-serif;
     border-radius: 10px;
     color: white;
 }
 
 .center__header__content input::placeholder {
+    font-family: "Comfortaa", sans-serif;
     opacity: 0.7;
     text-align: center;
     color: white;
 }
+
+.center__header__content input[type="text"] {
+    margin-left: 10px;
+    outline: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 
 .right__header__content a {
     font-family: "Comfortaa", sans-serif;

@@ -181,6 +181,21 @@ class ControllerUsers {
       });
     });
   }
+
+  static search(req, res) {
+    const query = req.query.q;
+
+    Users.search(query, (err, results) => {
+      if (err) {
+        if (err.message === "not found") {
+          return res.status(404).json({ message: "Aucun résultat trouvé" });
+        }
+        return res.status(500).json({ message: "Erreur lors de la recherche" });
+      }
+
+      res.json(results);
+    });
+  }
 }
 
 module.exports = ControllerUsers;
