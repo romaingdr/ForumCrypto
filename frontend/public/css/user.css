@@ -94,3 +94,8 @@
 .is__friend i {
     margin-right: 0.5rem;
 }
+
+.user__infos {
+    display: flex;
+    flex-direction: column;
+}
