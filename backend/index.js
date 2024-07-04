@@ -25,6 +25,7 @@ require("./src/routes/friendship.route")(app);
 require("./src/routes/topic.route")(app);
 require("./src/routes/categories.route")(app);
 require("./src/routes/messagerie.route")(app);
+require("./src/routes/post.route")(app);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
