@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     height: 90vh;
-    background-color: #707099;
+    background-color: #D3D3D3;
 }
 
 .topic__container {
@@ -19,10 +19,6 @@
     margin: 1rem;
 }
 
-.more__infos {
-    position: absolute;
-    right: 20px;
-}
 
 .topic__author {
     font-family: "Comfortaa", sans-serif;
@@ -52,7 +48,61 @@
 
 #more_infos {
    cursor: pointer;
+    font-size: 3rem;
 }
+
+.more__infos {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    right: 50px;
+}
+
+.topic__votes {
+    display: flex;
+    flex-direction: row;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    font-size: 2rem;
+    font-family: "Comfortaa", sans-serif;
+    color: white;
+    background-color: black;
+    margin-left: 1rem;
+}
+
+.bx-downvote {
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.bx-downvote:hover {
+    color: red;
+}
+
+.bx-upvote {
+    cursor: pointer;
+}
+
+.bx-upvote:hover {
+    color: green;
+}
+
+.nb__replies {
+    font-family: "Comfortaa", sans-serif;
+    margin-left: 1rem;
+    font-size: 2rem;
+}
+
+#topic_messages {
+    border-radius: 1rem;
+    padding: 0.5rem;
+    font-size: 2rem;
+    font-family: "Comfortaa", sans-serif;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+
 .topic__description {
     font-family: "Comfortaa", sans-serif;
     font-size: 1.2rem;
@@ -64,4 +114,66 @@
     margin-bottom: 0.5rem;
     color: black;
     font-family: "Comfortaa", sans-serif;
+}
+
+/* Ajouter un commentaire au topic */
+
+.new__comment {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.new__comment textarea {
+    resize: none;
+    font-family: "Comfortaa", sans-serif;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+
+.new__comment button {
+    font-family: "Comfortaa", sans-serif;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    width: fit-content;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.comment {
+    font-family: "Comfortaa", sans-serif;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    border-radius: 1rem;
+}
+
+.comment img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.comments__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.comment__header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.comment__votes {
+    margin-top: 1rem;
 }
