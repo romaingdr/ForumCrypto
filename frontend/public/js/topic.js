@@ -8,19 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageButton = document.getElementById('post_message');
     messageButton.addEventListener('click', () => {
         const messageContent = document.getElementById('message_content').value;
-        const parentPostId = null;
-        fetch('http://localhost:3000/api/post', {
-            method: 'POST',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({content:messageContent, parent_post_id:parentPostId, id_topic:idTopic})
-        })
-        .then(response => response.json())
-        .then(data => {
-            window.location.reload();
-        })
+        postMessage(messageContent);
     });
 
     // Récupérer les réponses au topic
@@ -36,9 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const messageContainer = document.querySelector('.comments__container');
         const posts = data;
         posts.forEach(post => {
-            const postDiv = document.createElement('div');
-            postDiv.classList.add('comment');
-            postDiv.innerHTML = `
+            if (!post.parent_post_id) {
+                const postDiv = document.createElement('div');
+                postDiv.classList.add('comment');
+                postDiv.id = `comment_${post.id_post}`;
+                postDiv.innerHTML = `
                 <div class="comment__header">
                     <img src="http://localhost:3000/assets/img/profile_pics/${post.profile_pic}" alt="avatar" class="comment__avatar">
                     <p class="comment__author">${post.username}</p>
@@ -46,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="comment__content">
                     <p class="comment__text">${post.content}</p>
                     <div class="comment__votes">
-                        <i class='bx bx-message-add'></i>
+                        <i class='bx bx-message-add new-reply' data-id=${post.id_post}></i>
                         <span class="nb__comment__replies">0</span>
                         <i class='bx bx-upvote'></i>
                         <span class="nb__votes">0</span>
@@ -55,10 +45,71 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
             `;
-            messageContainer.appendChild(postDiv);
+                messageContainer.appendChild(postDiv);
+            }
+        });
+
+        const replyButtons = document.querySelectorAll('.new-reply');
+
+        replyButtons.forEach(replyButton => {
+                replyButton.addEventListener('click', () => {
+                    const postId = replyButton.dataset.id
+                    console.log(postId)
+                    const commentDiv = document.querySelector(`#comment_${postId}`)
+
+                    const replyInputs = document.querySelectorAll('.reply__container')
+                    replyInputs.forEach(replyInput => {
+                        replyInput.remove()
+                    });
+
+                    const replyDiv = document.createElement('div')
+                    replyDiv.classList.add('reply__container')
+
+                    replyDiv.innerHTML = `
+                    <div class="reply__container">
+                        <input class="reply__input" type="text" placeholder="Répondre...">
+                        <i class='bx bxs-send send_reply'></i>
+                    </div>`
+
+                    const sendReplyButton = replyDiv.querySelector('.send_reply')
+                    sendReplyButton.addEventListener('click', () => {
+                        const replyContent = replyDiv.querySelector('.reply__input').value
+                        postMessage(replyContent, postId)
+                    });
+
+                    commentDiv.appendChild(replyDiv)
+            });
         });
     });
 });
+
+
+function postMessage(messageContent, parentPostId=null) {
+    const idTopic = window.location.pathname.split('/').pop();
+    fetch('http://localhost:3000/api/post', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({content:messageContent, parent_post_id:parentPostId, id_topic:idTopic})
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+                return;
+            } else {
+                if (parentPostId) {
+                    const commentDiv = document.querySelector(`#comment_${parentPostId}`)
+                    const replyDiv = commentDiv.querySelector('.reply__container')
+                    replyDiv.remove()
+                } else {
+                    window.location.reload();
+                }
+            }
+        })
+}
 
 function formatDate(dateString) {
     const date = new Date(dateString);
