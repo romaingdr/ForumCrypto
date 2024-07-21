@@ -110,13 +110,7 @@ function showUserInfo() {
                   user.profile_pic
                 }" alt="Avatar de ${user.username}" class="user__avatar">
                 <h1 class="user__username">${user.username}</h1>
-                
-                <p class="user__created_at">Créé à: ${createdAt}</p>
-                <p class="user__biography">Biographie: ${
-                  user.biography || "Aucune biographie disponible"
-                }</p>
-                <p class="user__last_connected">Connecté pour la derniere fois: ${lastConnected}</p>
-                
+       
             </div>
           `;
       }

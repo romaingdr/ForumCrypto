@@ -19,39 +19,88 @@ document.addEventListener('DOMContentLoaded', () => {
             'Content-Type': 'application/json'
         }
     })
-    .then(response => response.json())
-    .then(data => {
-        const messageContainer = document.querySelector('.comments__container');
-        const posts = data;
-        posts.forEach(post => {
-            if (!post.parent_post_id) {
-                const postDiv = document.createElement('div');
-                postDiv.classList.add('comment');
-                postDiv.id = `comment_${post.id_post}`;
-                postDiv.innerHTML = `
-                <div class="comment__header">
-                    <img src="http://localhost:3000/assets/img/profile_pics/${post.profile_pic}" alt="avatar" class="comment__avatar">
-                    <p class="comment__author">${post.username}</p>
-                </div>
-                <div class="comment__content">
-                    <p class="comment__text">${post.content}</p>
-                    <div class="comment__votes">
-                        <i class='bx bx-message-add new-reply' data-id=${post.id_post}></i>
-                        <span class="nb__comment__replies">0</span>
-                        <i class='bx bx-upvote'></i>
-                        <span class="nb__votes">0</span>
-                        <i class='bx bx-downvote'></i>
-                        <span class="nb__downvotes">0</span>
-                    </div>
-                </div>
-            `;
-                messageContainer.appendChild(postDiv);
-            }
-        });
+        .then(response => response.json())
+        .then(data => {
+            const posts = data;
+            const postMap = new Map();
+            const rootPosts = [];
 
-        const replyButtons = document.querySelectorAll('.new-reply');
+            // Organiser les posts dans un Map pour un accès facile par id
+            posts.forEach(post => {
+                post.replies = [];
+                postMap.set(post.id_post, post);
+                if (!post.parent_post_id) {
+                    rootPosts.push(post);
+                }
+            });
 
-        replyButtons.forEach(replyButton => {
+            // Assigner chaque post à son parent
+            posts.forEach(post => {
+                if (post.parent_post_id) {
+                    const parentPost = postMap.get(post.parent_post_id);
+                    if (parentPost) {
+                        parentPost.replies.push(post);
+                    }
+                }
+            });
+
+            // Fonction pour générer le HTML des posts de manière récursive
+            const generatePostHTML = (post, depth = 0) => {
+                let toggleButton = post.replies.length > 0 ?
+                    `<span class="comment__toggle" data-id="${post.id_post}">+</span>` : '';
+
+                let postHTML = `
+        <div class="comment" id="comment_${post.id_post}" style="margin-left: ${depth * 80}px;">
+            <div class="comment__header">
+                ${toggleButton}
+                <img src="http://localhost:3000/assets/img/profile_pics/${post.profile_pic}" alt="avatar" class="comment__avatar">
+                <p class="comment__author">${post.username}</p>
+            </div>
+            <div class="comment__content">
+                <p class="comment__text">${post.content}</p>
+                <div class="comment__votes">
+                    <i class='bx bx-message-add new-reply' data-id=${post.id_post}></i>
+                    <span class="nb__comment__replies">${post.replies.length}</span>
+                    <i class='bx bx-upvote'></i>
+                    <span class="nb__votes">0</span>
+                    <i class='bx bx-downvote'></i>
+                    <span class="nb__downvotes">0</span>
+                </div>
+            </div>
+            <div class="comment__replies" id="replies_${post.id_post}" style="margin-left: ${depth * 30}px;">`;
+
+                post.replies.forEach(reply => {
+                    postHTML += generatePostHTML(reply, depth + 1);
+                });
+
+                postHTML += `</div></div>`;
+                return postHTML;
+            };
+
+            const messageContainer = document.querySelector('.comments__container');
+            rootPosts.forEach(post => {
+                const postHTML = generatePostHTML(post);
+                messageContainer.innerHTML += postHTML;
+            });
+
+            // Ajouter des gestionnaires d'événements pour les boutons de basculement
+            document.querySelectorAll('.comment__toggle').forEach(toggleButton => {
+                toggleButton.addEventListener('click', (event) => {
+                    const postId = event.target.getAttribute('data-id');
+                    const repliesContainer = document.getElementById(`replies_${postId}`);
+                    if (repliesContainer.style.display === 'none' || !repliesContainer.style.display) {
+                        repliesContainer.style.display = 'block';
+                        event.target.textContent = '-';
+                    } else {
+                        repliesContainer.style.display = 'none';
+                        event.target.textContent = '+';
+                    }
+                });
+            });
+
+            const replyButtons = document.querySelectorAll('.new-reply');
+
+            replyButtons.forEach(replyButton => {
                 replyButton.addEventListener('click', () => {
                     const postId = replyButton.dataset.id
                     console.log(postId)
@@ -78,9 +127,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
 
                     commentDiv.appendChild(replyDiv)
+                });
             });
         });
-    });
 });
 
 
@@ -104,9 +153,8 @@ function postMessage(messageContent, parentPostId=null) {
                     const commentDiv = document.querySelector(`#comment_${parentPostId}`)
                     const replyDiv = commentDiv.querySelector('.reply__container')
                     replyDiv.remove()
-                } else {
-                    window.location.reload();
                 }
+                window.location.reload();
             }
         })
 }

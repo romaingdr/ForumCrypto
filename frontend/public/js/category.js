@@ -63,7 +63,10 @@ function displayTopics(data) {
         const year = date.getUTCFullYear();
 
         const tags = topic.tags
-        const tagsArray = tags.split(',');
+        let tagsArray = [];
+        if (tags) {
+            tagsArray = tags.split(',');
+        }
 
         topicElement.className = 'topic';
         topicElement.innerHTML = `
